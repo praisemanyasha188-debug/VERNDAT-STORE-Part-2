@@ -21,8 +21,8 @@ body {
     font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
     font-size: 1rem;
     line-height: 1.7;
-    background-color: #fb8bd2;
-    color: #3c012c;
+    background-color: #2e7b46;
+    color: #067e50;
 }
 
 /* Remove bullet points from all lists */
@@ -97,7 +97,7 @@ h4 {
 p {
     font-size: 1rem;
     line-height: 1.7;
-    color: #8a8070;
+    color: #d17abb;
     margin-bottom: 1rem;
 }
 
@@ -105,7 +105,7 @@ blockquote {
     font-style: italic;
     font-size: 1rem;
     color: #1c1a14;
-    border-left: 4px solid #c4843a;
+    border-left: 4px solid #b585ca;
     padding-left: 1rem;
     margin-bottom: 1.5rem;
 }
@@ -114,7 +114,7 @@ cite {
     display: block;
     font-size: 0.85rem;
     font-style: normal;
-    color: #8a8070;
+    color: #3f5267;
     margin-top: 0.5rem;
 }
 
@@ -147,7 +147,7 @@ header {
 .logo a {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #3a5a3c;
+    color: #ec2dbc;
 }
 
 /* Navigation links in a horizontal row using flexbox */
