@@ -21,8 +21,8 @@ body {
     font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
     font-size: 1rem;
     line-height: 1.7;
-    background-color: #f5f0e8;
-    color: #1c1a14;
+    background-color: #fb8bd2;
+    color: #3c012c;
 }
 
 /* Remove bullet points from all lists */
@@ -39,14 +39,14 @@ img { max-width: 100%; height: auto; display: block; }
    Reusable values for consistent styling.
 ============================================= */
 :root {
-    --green:       #3a5a3c;
-    --green-dark:  #2d5230;
-    --green-light: #6b9e6e;
-    --cream:       #faf7f0;
+    --green:       #420f46;
+    --green-dark:  #5b1038;
+    --green-light: #da46fb;
+    --cream:       #f82f6e;
     --background:  #f5f0e8;
-    --dark:        #1c1a14;
-    --accent:      #c4843a;
-    --muted:       #8a8070;
+    --dark:        #320243;
+    --accent:      #a382d9;
+    --muted:       #59a9ff;
     --border:      #d8cfc0;
     --white:       #ffffff;
     --shadow:      0 2px 8px rgba(0,0,0,0.10);
