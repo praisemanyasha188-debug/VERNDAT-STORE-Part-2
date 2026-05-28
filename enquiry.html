@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<!-- 
+  enquiry.html — Verdant Store: Product Enquiry Page
+  Contains a validated enquiry form (name, email, type, message)
+  with JavaScript front-end validation and a success confirmation.
+  Also includes an FAQ section.
+  Author: [Student Name] | Student No: [Student Number]
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Make a product or service enquiry to Verdant. Ask about availability, bulk orders, gifting, or plant care advice." />
+  <meta name="keywords" content="Verdant enquiry, plant enquiry, bulk order, gift plants, product availability" />
+  <meta name="author" content="Verdant Store" />
+  <title>Enquiry — Verdant</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* --- Page layout --- */
+    .enquiry-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    /* --- Info panel --- */
+    .enquiry-info h2 { margin-bottom: 1rem; font-size: 1.6rem; }
+    .enquiry-info p { color: var(--clr-muted); margin-bottom: 1.5rem; }
+
+    .enquiry-types { display: flex; flex-direction: column; gap: 1rem; }
+
+    .enquiry-type {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 1.2rem;
+      background: var(--clr-cream);
+      border: 1px solid var(--clr-border);
+      border-radius: 8px;
+    }
+
+    .enquiry-type-icon {
+      font-size: 1.8rem;
+      flex-shrink: 0;
+    }
+
+    .enquiry-type h4 { margin-bottom: 0.2rem; font-size: 0.98rem; }
+    .enquiry-type p { color: var(--clr-muted); font-size: 0.85rem; margin: 0; }
+
+    /* --- Form panel --- */
+    .enquiry-form-panel {
+      background: var(--clr-cream);
+      border-radius: 12px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .enquiry-form-panel h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .enquiry-form-panel > p {
+      color: var(--clr-muted);
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
+
+    /* --- Success message --- */
+    .success-msg {
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+
+    .success-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      background: var(--clr-green);
+      color: white;
+      border-radius: 50%;
+      font-size: 1.8rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .success-msg h3 { margin-bottom: 0.5rem; }
+    .success-msg p { color: var(--clr-muted); margin: 0 auto; }
+
+    /* --- FAQ --- */
+    .faq-section { background: var(--clr-cream); }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .faq-item {
+      padding: 1.5rem;
+      background: var(--clr-bg);
+      border: 1px solid var(--clr-border);
+      border-radius: 8px;
+    }
+
+    .faq-item h4 { font-size: 1rem; margin-bottom: 0.5rem; }
+    .faq-item p { color: var(--clr-muted); font-size: 0.9rem; margin: 0; }
+
+    /* Fade-in */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 900px) {
+      .enquiry-layout { grid-template-columns: 1fr; }
+      .faq-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== HEADER ===================== -->
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🌿</span>
+        Verdant
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="enquiry.html">Enquiry</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===================== PAGE HERO ===================== -->
+  <!-- PAGE HERO -->
+  <section class="page-hero" aria-label="Page header">
+    <div class="container">
+      <span class="tag">Get in touch</span>
+      <h1>Make an Enquiry</h1>
+      <p>Ask about stock, bulk orders, plant care, gifting, or anything else. We usually respond within 2 business days.</p>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <section class="section" aria-labelledby="enquiry-heading">
+      <div class="container">
+        <div class="enquiry-layout">
+
+          <!-- INFO PANEL: explains different enquiry types to help users choose -->
+          <div class="enquiry-info fade-in">
+            <h2 id="enquiry-heading">How can we help?</h2>
+            <p>Whether you're after a specific plant, need a bulk order for an event, or just want advice on what to buy — we're here for it.</p>
+
+            <div class="enquiry-types">
+              <div class="enquiry-type">
+                <span class="enquiry-type-icon">🌿</span>
+                <div>
+                  <h4>Product Availability</h4>
+                  <p>Ask about specific plant varieties, pot sizes, or whether an out-of-stock item is coming back.</p>
+                </div>
+              </div>
+              <div class="enquiry-type">
+                <span class="enquiry-type-icon">🎁</span>
+                <div>
+                  <h4>Corporate &amp; Gifting Orders</h4>
+                  <p>We create bespoke plant gift sets for birthdays, corporate gifting, and special events.</p>
+                </div>
+              </div>
+              <div class="enquiry-type">
+                <span class="enquiry-type-icon">📦</span>
+                <div>
+                  <h4>Bulk Orders</h4>
+                  <p>Planning an office refresh or event décor? We offer discounts on orders of 10+ plants.</p>
+                </div>
+              </div>
+              <div class="enquiry-type">
+                <span class="enquiry-type-icon">🌱</span>
+                <div>
+                  <h4>Plant Care Advice</h4>
+                  <p>Not sure what to get or how to care for a plant? Ask our in-house horticulturalist.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FORM PANEL: the validated enquiry form -->
+          <!-- Form uses novalidate so our custom JS validation runs instead of browser default -->
+          <div class="enquiry-form-panel fade-in">
+            <h3>Send us your enquiry</h3>
+            <p>All fields marked * are required.</p>
+
+            <div id="form-container">
+              <form id="enquiry-form" novalidate>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" placeholder="Yolanda Petersen" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com" required />
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+27 21 000 0000" />
+                  </div>
+                  <div class="form-group">
+                    <label for="enquiry-type">Enquiry Type *</label>
+                    <select id="enquiry-type" name="enquiry-type" required>
+                      <option value="" disabled selected>Select a type…</option>
+                      <option value="availability">Product Availability</option>
+                      <option value="gifting">Corporate / Gifting</option>
+                      <option value="bulk">Bulk Order</option>
+                      <option value="care">Plant Care Advice</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="product">Product(s) of Interest</label>
+                  <input type="text" id="product" name="product" placeholder="e.g. Monstera Deliciosa, Terracotta Set" />
+                </div>
+
+                <div class="form-group">
+                  <label for="message">Your Message *</label>
+                  <textarea id="message" name="message" placeholder="Tell us more about your enquiry…" required></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="how-heard">How did you hear about us?</label>
+                  <select id="how-heard" name="how-heard">
+                    <option value="" disabled selected>Select an option…</option>
+                    <option value="google">Google / Search</option>
+                    <option value="social">Social Media</option>
+                    <option value="friend">Friend / Family</option>
+                    <option value="market">Farmers Market</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width:100%; margin-top:0.5rem;">
+                  Submit Enquiry
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FAQ ===================== -->
+    <!-- FAQ SECTION: answers common questions to reduce support enquiries -->
+    <section class="section faq-section" aria-labelledby="faq-heading">
+      <div class="container">
+        <div class="section-header fade-in">
+          <span class="tag">Common questions</span>
+          <h2 id="faq-heading">Frequently Asked Questions</h2>
+        </div>
+        <div class="faq-grid">
+          <div class="faq-item fade-in">
+            <h4>How long does delivery take?</h4>
+            <p>Standard nationwide delivery takes 3–5 business days. Express next-day delivery is available in Cape Town and Johannesburg for an additional fee.</p>
+          </div>
+          <div class="faq-item fade-in">
+            <h4>Do you offer plant care guarantees?</h4>
+            <p>Yes! We offer a 14-day health guarantee on all live plants. If your plant arrives damaged or becomes unhealthy within 14 days of delivery, contact us for a replacement or refund.</p>
+          </div>
+          <div class="faq-item fade-in">
+            <h4>Can I visit a store before ordering?</h4>
+            <p>Absolutely. Our Cape Town store is open Mon–Sat 9am–5pm and our Johannesburg store Mon–Fri 9am–6pm, Sat 9am–4pm.</p>
+          </div>
+          <div class="faq-item fade-in">
+            <h4>Do you offer gift wrapping?</h4>
+            <p>Yes — we offer premium gift wrapping with a handwritten message for all orders. Simply add a note during checkout or mention it in your enquiry.</p>
+          </div>
+          <div class="faq-item fade-in">
+            <h4>What's the minimum for bulk orders?</h4>
+            <p>Bulk order discounts start from 10 units. Corporate accounts with recurring orders receive additional benefits — enquire for details.</p>
+          </div>
+          <div class="faq-item fade-in">
+            <h4>Do you ship internationally?</h4>
+            <p>Currently we deliver within South Africa only. Due to plant import regulations, international shipping is not available at this time.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <!-- SITE FOOTER -->
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <span class="logo-icon">🌿</span> Verdant
+          </a>
+          <p>Bringing nature indoors since 2017. Proudly South African, sustainably sourced.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="products.html">All Products</a></li>
+            <li><a href="products.html">Houseplants</a></li>
+            <li><a href="products.html">Pots &amp; Planters</a></li>
+            <li><a href="products.html">Accessories</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="enquiry.html">Make an Enquiry</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:hello@verdant.co.za">hello@verdant.co.za</a></li>
+            <li><a href="tel:+27214567890">+27 21 456 7890</a></li>
+            <li><a href="contact.html">32 Blossom Lane, Gardens, Cape Town</a></li>
+            <li><a href="contact.html">14 Oak Street, Rosebank, Johannesburg</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Verdant (Pty) Ltd. All rights reserved.</span>
+        <span>Designed with 🌱 in South Africa</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

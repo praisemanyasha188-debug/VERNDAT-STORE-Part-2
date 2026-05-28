@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<!-- 
+  contact.html — Verdant Store: Contact Page
+  Contains TWO store location cards (Cape Town + Johannesburg),
+  trading hours tables, a contact form, and direct contact links.
+  Author: [Student Name] | Student No: [Student Number]
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Find Verdant's stores in Cape Town and Johannesburg. Contact us by email, phone, or using our online contact form." />
+  <meta name="keywords" content="Verdant contact, store locations, Cape Town plant store, Johannesburg plant store, contact form" />
+  <meta name="author" content="Verdant Store" />
+  <title>Contact — Verdant</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* --- Contact layout --- */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    /* --- Locations --- */
+    .location-card {
+      background: var(--clr-cream);
+      border: 1px solid var(--clr-border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow);
+    }
+
+    .location-map {
+      height: 200px;
+      background: var(--clr-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      position: relative;
+    }
+
+    .location-map-label {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      background: rgba(28,26,20,0.8);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    /* Cape Town map has a different colour */
+    .location-map.jbg { background: var(--clr-accent); }
+
+    .location-body {
+      padding: 1.5rem;
+    }
+
+    .location-body h3 { margin-bottom: 0.3rem; }
+
+    .location-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--clr-green);
+      color: white;
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+      margin-bottom: 1rem;
+    }
+
+    .location-details { list-style: none; }
+    .location-details li {
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+      font-size: 0.92rem;
+      color: var(--clr-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .location-details li span:first-child { flex-shrink: 0; }
+
+    /* --- Hours table --- */
+    .hours-table { width: 100%; margin-top: 0.8rem; }
+    .hours-table td { padding: 0.3rem 0; font-size: 0.88rem; }
+    .hours-table td:last-child { text-align: right; color: var(--clr-dark); font-weight: 400; }
+
+    /* --- Form panel --- */
+    .contact-form-panel {
+      background: var(--clr-cream);
+      border-radius: 12px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-form-panel h2 { margin-bottom: 0.3rem; font-size: 1.6rem; }
+    .contact-form-panel > p { color: var(--clr-muted); font-size: 0.9rem; margin-bottom: 2rem; }
+
+    /* --- Direct contact --- */
+    .direct-contact {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 4rem;
+      padding-top: 4rem;
+      border-top: 1px solid var(--clr-border);
+    }
+
+    .direct-card {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      background: var(--clr-cream);
+      border: 1px solid var(--clr-border);
+      border-radius: 8px;
+    }
+
+    .direct-icon {
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .direct-card h4 { margin-bottom: 0.3rem; font-size: 0.98rem; }
+    .direct-card p { color: var(--clr-muted); font-size: 0.85rem; margin: 0 auto 0.8rem; }
+    .direct-card a { color: var(--clr-green); font-size: 0.9rem; font-weight: 500; }
+
+    /* Fade-in */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 900px) {
+      .contact-layout { grid-template-columns: 1fr; }
+      .direct-contact { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== HEADER ===================== -->
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🌿</span>
+        Verdant
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="enquiry.html">Enquiry</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===================== PAGE HERO ===================== -->
+  <!-- PAGE HERO -->
+  <section class="page-hero" aria-label="Page header">
+    <div class="container">
+      <span class="tag">Find us</span>
+      <h1>Contact Us</h1>
+      <p>Two stores, one online shop, and a team that genuinely loves talking about plants.</p>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <section class="section" aria-labelledby="contact-heading">
+      <div class="container">
+        <div class="contact-layout">
+
+          <!-- STORE LOCATIONS: two separate location cards as required by the brief -->
+          <!-- Each card includes address, phone, email, and trading hours table -->
+          <div class="locations fade-in">
+            <span class="tag">Our Stores</span>
+            <h2 id="contact-heading" style="margin-bottom:2rem; font-size:1.6rem;">Visit us in store</h2>
+
+            <!-- LOCATION 1: Cape Town store — role="img" on map placeholder for accessibility -->
+            <div class="location-card">
+              <div class="location-map" role="img" aria-label="Map placeholder for Cape Town store">
+                🗺️
+                <span class="location-map-label">Cape Town, Gardens</span>
+              </div>
+              <div class="location-body">
+                <span class="location-badge">Cape Town</span>
+                <h3>32 Blossom Lane, Gardens</h3>
+                <ul class="location-details">
+                  <li><span>📍</span><span>32 Blossom Lane, Gardens, Cape Town, 8001</span></li>
+                  <li><span>📞</span><span><a href="tel:+27214567890" style="color:var(--clr-green);">+27 21 456 7890</a></span></li>
+                  <li><span>✉️</span><span><a href="mailto:capetown@verdant.co.za" style="color:var(--clr-green);">capetown@verdant.co.za</a></span></li>
+                </ul>
+                <table class="hours-table" aria-label="Cape Town store hours">
+                  <tbody>
+                    <tr><td style="color:var(--clr-muted);">Monday – Friday</td><td>9:00 – 17:00</td></tr>
+                    <tr><td style="color:var(--clr-muted);">Saturday</td><td>9:00 – 15:00</td></tr>
+                    <tr><td style="color:var(--clr-muted);">Sunday</td><td>Closed</td></tr>
+                    <tr><td style="color:var(--clr-muted);">Public Holidays</td><td>10:00 – 14:00</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- LOCATION 2: Johannesburg store -->
+            <div class="location-card">
+              <div class="location-map jbg" role="img" aria-label="Map placeholder for Johannesburg store">
+                🗺️
+                <span class="location-map-label">Johannesburg, Rosebank</span>
+              </div>
+              <div class="location-body">
+                <span class="location-badge" style="background:var(--clr-accent);">Johannesburg</span>
+                <h3>14 Oak Street, Rosebank</h3>
+                <ul class="location-details">
+                  <li><span>📍</span><span>14 Oak Street, Rosebank, Johannesburg, 2196</span></li>
+                  <li><span>📞</span><span><a href="tel:+27119876543" style="color:var(--clr-green);">+27 11 987 6543</a></span></li>
+                  <li><span>✉️</span><span><a href="mailto:jhb@verdant.co.za" style="color:var(--clr-green);">jhb@verdant.co.za</a></span></li>
+                </ul>
+                <table class="hours-table" aria-label="Johannesburg store hours">
+                  <tbody>
+                    <tr><td style="color:var(--clr-muted);">Monday – Friday</td><td>9:00 – 18:00</td></tr>
+                    <tr><td style="color:var(--clr-muted);">Saturday</td><td>9:00 – 16:00</td></tr>
+                    <tr><td style="color:var(--clr-muted);">Sunday</td><td>10:00 – 14:00</td></tr>
+                    <tr><td style="color:var(--clr-muted);">Public Holidays</td><td>Closed</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- CONTACT FORM: general message form with subject field -->
+          <div class="contact-form-panel fade-in">
+            <h2>Send us a message</h2>
+            <p>We read every message and respond within 1–2 business days.</p>
+
+            <form id="contact-form" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="c-name">First Name *</label>
+                  <input type="text" id="c-name" name="first-name" placeholder="Amahle" required />
+                </div>
+                <div class="form-group">
+                  <label for="c-surname">Last Name *</label>
+                  <input type="text" id="c-surname" name="last-name" placeholder="Nkosi" required />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="c-email">Email Address *</label>
+                <input type="email" id="c-email" name="email" placeholder="you@example.com" required />
+              </div>
+
+              <div class="form-group">
+                <label for="c-phone">Phone Number</label>
+                <input type="tel" id="c-phone" name="phone" placeholder="+27 82 000 0000" />
+              </div>
+
+              <div class="form-group">
+                <label for="c-store">Nearest Store</label>
+                <select id="c-store" name="store">
+                  <option value="" disabled selected>Select a store…</option>
+                  <option value="ct">Cape Town — Gardens</option>
+                  <option value="jhb">Johannesburg — Rosebank</option>
+                  <option value="online">Online only</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="c-subject">Subject *</label>
+                <input type="text" id="c-subject" name="subject" placeholder="What's on your mind?" required />
+              </div>
+
+              <div class="form-group">
+                <label for="c-message">Message *</label>
+                <textarea id="c-message" name="message" placeholder="Write your message here…" required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width:100%;">
+                Send Message
+              </button>
+            </form>
+          </div>
+
+        </div>
+
+        <!-- DIRECT CONTACT: three quick-contact cards (email, phone, WhatsApp) -->
+        <div class="direct-contact">
+          <div class="direct-card fade-in">
+            <div class="direct-icon">📧</div>
+            <h4>Email Us</h4>
+            <p>General enquiries, orders, and feedback</p>
+            <a href="mailto:hello@verdant.co.za">hello@verdant.co.za</a>
+          </div>
+          <div class="direct-card fade-in">
+            <div class="direct-icon">📞</div>
+            <h4>Call Us</h4>
+            <p>Speak directly to a member of our team</p>
+            <a href="tel:+27214567890">+27 21 456 7890</a>
+          </div>
+          <div class="direct-card fade-in">
+            <div class="direct-icon">💬</div>
+            <h4>WhatsApp</h4>
+            <p>Quick plant questions and order updates</p>
+            <a href="https://wa.me/27821234567" target="_blank" rel="noopener noreferrer">+27 82 123 4567</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <!-- SITE FOOTER -->
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <span class="logo-icon">🌿</span> Verdant
+          </a>
+          <p>Bringing nature indoors since 2017. Proudly South African, sustainably sourced.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="products.html">All Products</a></li>
+            <li><a href="products.html">Houseplants</a></li>
+            <li><a href="products.html">Pots &amp; Planters</a></li>
+            <li><a href="products.html">Accessories</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="enquiry.html">Make an Enquiry</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:hello@verdant.co.za">hello@verdant.co.za</a></li>
+            <li><a href="tel:+27214567890">+27 21 456 7890</a></li>
+            <li><a href="contact.html">32 Blossom Lane, Gardens, Cape Town</a></li>
+            <li><a href="contact.html">14 Oak Street, Rosebank, Johannesburg</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Verdant (Pty) Ltd. All rights reserved.</span>
+        <span>Designed with 🌱 in South Africa</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
