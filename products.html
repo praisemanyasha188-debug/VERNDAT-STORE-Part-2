@@ -1,432 +1,273 @@
 <!DOCTYPE html>
-<!-- 
-  products.html — Verdant Store: Products Page
-  Displays the full product catalogue organised by category.
-  Includes a filter button bar and product cards with enquiry links.
-  Author: Rorisang | Student No: st10481852
+<!--
+    products.html - Verdant Store: Products Page
+    Displays the full product catalogue organised into categories.
+    Categories: Foliage Plants, Succulents and Cacti,
+    Pots and Planters, Home Accessories.
+    Author: Rorisang Manyasha | Student No: ST10481852
 -->
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Browse Verdant's full range of houseplants, artisan pots, succulents, and natural home accessories. Shop online with nationwide delivery." />
-  <meta name="keywords" content="buy plants online, houseplants South Africa, artisan pots, succulents, home accessories, Verdant shop" />
-  <meta name="author" content="Verdant Store" />
-  <title>Products — Verdant</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <style>
-    /* --- Filter Bar --- */
-    .filter-bar {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-      margin-bottom: 3rem;
-    }
+    <!-- Character encoding -->
+    <meta charset="UTF-8" />
 
-    .filter-btn {
-      padding: 0.5rem 1.2rem;
-      border: 1px solid var(--clr-border);
-      border-radius: 100px;
-      background: var(--clr-cream);
-      font-family: var(--ff-body);
-      font-size: 0.85rem;
-      cursor: pointer;
-      color: var(--clr-muted);
-      transition: all var(--transition);
-    }
+    <!-- Viewport for mobile responsiveness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    .filter-btn:hover,
-    .filter-btn.active {
-      background: var(--clr-green);
-      border-color: var(--clr-green);
-      color: #fff;
-    }
+    <!-- SEO meta tags -->
+    <meta name="description" content="Browse Verdant's full range of houseplants, artisan pots, succulents, and natural home accessories. Shop online with nationwide delivery." />
+    <meta name="keywords" content="buy plants online, houseplants South Africa, artisan pots, succulents, home accessories, Verdant shop" />
+    <meta name="author" content="Rorisang Manyasha" />
 
-    /* --- Product detail page style --- */
-    .product-detail {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
-      margin-bottom: 4rem;
-      padding-bottom: 4rem;
-      border-bottom: 1px solid var(--clr-border);
-    }
+    <!-- Page title -->
+    <title>Products - Verdant</title>
 
-    .product-detail-img {
-      height: 380px;
-      background: var(--clr-cream);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 7rem;
-      box-shadow: var(--shadow);
-    }
-
-    .product-detail-info h3 {
-      font-family: var(--ff-display);
-      font-size: 1.8rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .product-detail-info .price {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-      display: block;
-    }
-
-    .product-detail-info p {
-      color: var(--clr-muted);
-      margin-bottom: 1rem;
-    }
-
-    .product-meta {
-      background: var(--clr-bg);
-      border: 1px solid var(--clr-border);
-      border-radius: 6px;
-      padding: 1rem 1.2rem;
-      margin: 1.2rem 0;
-    }
-
-    .product-meta dl {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.5rem;
-    }
-
-    .product-meta dt {
-      font-size: 0.8rem;
-      color: var(--clr-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      font-weight: 500;
-    }
-
-    .product-meta dd {
-      font-size: 0.9rem;
-      color: var(--clr-dark);
-    }
-
-    /* Category headings */
-    .category-heading {
-      font-family: var(--ff-display);
-      font-size: 1.6rem;
-      color: var(--clr-dark);
-      margin: 3rem 0 1.5rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid var(--clr-border);
-    }
-
-    /* Fade-in */
-    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .fade-in.visible { opacity: 1; transform: none; }
-
-    @media (max-width: 900px) {
-      .product-detail { grid-template-columns: 1fr; }
-    }
-  </style>
+    <!-- Shared CSS stylesheet -->
+    <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
 
-  <!-- ===================== HEADER ===================== -->
-  <!-- SITE HEADER: sticky navigation bar -->
-  <header class="site-header">
-    <div class="header-inner">
-      <a href="index.html" class="logo">
-        <span class="logo-icon">🌿</span>
-        Verdant
-      </a>
-      <nav class="main-nav" aria-label="Main navigation">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="products.html">Products</a></li>
-          <li><a href="enquiry.html">Enquiry</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+    <!-- ================================================
+         HEADER
+         Shared navigation across all pages.
+    ================================================ -->
+    <header>
 
-  <!-- ===================== PAGE HERO ===================== -->
-  <!-- PAGE HERO: green banner header for the products page -->
-  <section class="page-hero" aria-label="Page header">
-    <div class="container">
-      <span class="tag">Shop</span>
-      <h1>Our Collection</h1>
-      <p>Over 200 varieties of houseplants, artisan pots, and natural home accessories — all ethically sourced.</p>
-    </div>
-  </section>
-
-  <!-- MAIN CONTENT -->
-  <main>
-    <section class="section" aria-labelledby="products-heading">
-      <div class="container">
-
-        <!-- FILTER BAR: buttons that allow users to filter by category (JS-powered) -->
-        <div class="filter-bar" role="group" aria-label="Filter products by category">
-          <button class="filter-btn active">All</button>
-          <button class="filter-btn">Foliage Plants</button>
-          <button class="filter-btn">Flowering Plants</button>
-          <button class="filter-btn">Succulents &amp; Cacti</button>
-          <button class="filter-btn">Pots &amp; Planters</button>
-          <button class="filter-btn">Accessories</button>
+        <div class="logo">
+            <a href="index.html">🌿 Verdant</a>
         </div>
 
-        <!-- PRODUCT CATEGORY 1: Foliage Plants — <article> used for each product card -->
-        <h2 class="category-heading">🌿 Foliage Plants</h2>
-        <div class="products-grid">
-          <article class="product-card fade-in">
-            <div class="product-img">🌿<span class="product-badge">Bestseller</span></div>
-            <div class="product-body">
-              <span class="tag">Foliage</span>
-              <h3>Monstera Deliciosa</h3>
-              <p>The classic Swiss cheese plant. Easy to care for, fast growing, and instantly iconic.</p>
-              <div class="product-footer">
-                <span class="price">R 349</span>
-                <a href="enquiry.html" class="btn btn-primary" style="padding:0.55rem 1.2rem; font-size:0.82rem;">Enquire</a>
-              </div>
-            </div>
-          </article>
+        <!-- Main navigation -->
+        <nav aria-label="Main navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="enquiry.html">Enquiry</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
 
-          <article class="product-card fade-in">
-            <div class="product-img" style="background:#d8ead9;">🍃</div>
-            <div class="product-body">
-              <span class="tag">Foliage</span>
-              <h3>Pothos (Golden)</h3>
-              <p>Nearly indestructible and beautifully trailing. Perfect for shelves, hanging baskets, or desks.</p>
-              <div class="product-footer">
-                <span class="price">R 129</span>
-                <a href="enquiry.html" class="btn btn-primary" style="padding:0.55rem 1.2rem; font-size:0.82rem;">Enquire</a>
-              </div>
-            </div>
-          </article>
+    </header>
 
-          <article class="product-card fade-in">
-            <div class="product-img" style="background:#e2dbd0;">🌱<span class="product-badge" style="background:var(--clr-green);">New</span></div>
-            <div class="product-body">
-              <span class="tag">Foliage</span>
-              <h3>Fiddle Leaf Fig</h3>
-              <p>The designer's favourite — large, architectural leaves in a beautiful lyre shape.</p>
-              <div class="product-footer">
-                <span class="price">R 599</span>
-                <a href="enquiry.html" class="btn btn-primary" style="padding:0.55rem 1.2rem; font-size:0.82rem;">Enquire</a>
-              </div>
-            </div>
-          </article>
+    <!-- ================================================
+         MAIN CONTENT
+    ================================================ -->
+    <main>
 
-          <article class="product-card fade-in">
-            <div class="product-img" style="background:#d2e8d4;">🌾</div>
-            <div class="product-body">
-              <span class="tag">Foliage</span>
-              <h3>Peace Lily</h3>
-              <p>A natural air purifier with graceful white blooms. Thrives in low light — ideal for offices.</p>
-              <div class="product-footer">
-                <span class="price">R 179</span>
-                <a href="enquiry.html" class="btn btn-primary" style="padding:0.55rem 1.2rem; font-size:0.82rem;">Enquire</a>
-              </div>
-            </div>
-          </article>
-        </div>
+        <!-- PAGE HEADING -->
+        <section id="page-heading">
+            <h1>Our Products</h1>
+            <p>Over 200 varieties of houseplants, artisan pots, and natural home accessories - all ethically sourced and proudly South African.</p>
+        </section>
 
-        <!-- PRODUCT CATEGORY 2: Succulents & Cacti -->
-        <h2 class="category-heading">🌵 Succulents &amp; Cacti</h2>
-        <div class="products-grid">
-          <article class="product-card fade-in">
-            <div class="product-img" style="background:#ddeade;">🌵</div>
-            <div class="product-body">
-              <span class="tag">Succulents</span>
-              <h3>Desert Garden Kit</h3>
-              <p>Six mixed succulents with a hand-painted ceramic planter and premium succulent soil.</p>
-              <div class="product-footer">
-                <span class="price">R 199</span>
-                <a href="enquiry.html" class="btn btn-primary" style="padding:0.55rem 1.2rem; font-size:0.82rem;">Enquire</a>
-              </div>
-            </div>
-          </article>
+        <!-- CATEGORY 1: FOLIAGE PLANTS
+             <article> is used for each product as each product
+             is an independent, self-contained piece of content. -->
+        <section id="foliage-plants">
+            <h2>Foliage Plants</h2>
 
-          <article class="product-card fade-in">
-            <div class="product-img" style="background:#e8e3d5;">🪴</div>
-            <div class="product-body">
-              <span class="tag">Succulents</span>
-              <h3>Aloe Vera (XL)</h3>
-              <p>The original healing plant. Stunning as a specimen plant and endlessly useful in the home.</p>
-              <div class="product-footer">
-                <span class="price">R 249</span>
-                <a href="enquiry.html" class="btn btn-primary" style="padding:0.55rem 1.2rem; font-size:0.82rem;">Enquire</a>
-              </div>
-            </div>
-          </article>
+            <div class="product-card-grid">
+        <!-- Product 1 -->
+            <article class="product-card">
+                <h3>Monstera Deliciosa</h3>
+                <p>Category: Foliage Plants</p>
+                <p>The classic Swiss cheese plant. Easy to care for, fast growing, and instantly iconic. Prefers bright indirect light and weekly watering.</p>
+                <p>Care Level: Easy</p>
+                <p>Light: Bright indirect light</p>
+                <p>Price: R 349</p>
+                <a href="enquiry.html">Enquire About This Product</a>
+            </article>
 
-          <article class="product-card fade-in">
-            <div class="product-img" style="background:#f0e8e0;">🌺</div>
-            <div class="product-body">
-              <span class="tag">Cacti</span>
-              <h3>Moon Cactus</h3>
-              <p>A cheerful, brightly coloured grafted cactus that adds a pop of unexpected colour to any space.</p>
-              <div class="product-footer">
-                <span class="price">R 89</span>
-                <a href="enquiry.html" class="btn btn-primary" style="padding:0.55rem 1.2rem; font-size:0.82rem;">Enquire</a>
-              </div>
-            </div>
-          </article>
-        </div>
+            <!-- Product 2 -->
+            <article class="product-card">
+                <h3>Pothos - Golden</h3>
+                <p>Category: Foliage Plants</p>
+                <p>Nearly indestructible and beautifully trailing. Perfect for shelves, hanging baskets, or desks. Tolerates low light very well.</p>
+                <p>Care Level: Very Easy</p>
+                <p>Light: Low to bright indirect light</p>
+                <p>Price: R 129</p>
+                <a href="enquiry.html">Enquire About This Product</a>
+            </article>
 
-        <!-- PRODUCT CATEGORY 3: Pots & Planters -->
-        <h2 class="category-heading">🏺 Pots &amp; Planters</h2>
-        <div class="products-grid">
-          <article class="product-card fade-in">
-            <div class="product-img" style="background:#e8e0d5;">🪴<span class="product-badge" style="background:var(--clr-green);">New</span></div>
-            <div class="product-body">
-              <span class="tag">Pots</span>
-              <h3>Terracotta Set (3)</h3>
-              <p>Hand-thrown terracotta pots in three graduated sizes. Unglazed finish that ages beautifully.</p>
-              <div class="product-footer">
-                <span class="price">R 289</span>
-                <a href="enquiry.html" class="btn btn-primary" style="padding:0.55rem 1.2rem; font-size:0.82rem;">Enquire</a>
-              </div>
-            </div>
-          </article>
+            <!-- Product 3 -->
+            <article class="product-card">
+                <h3>Fiddle Leaf Fig</h3>
+                <p>Category: Foliage Plants</p>
+                <p>The designer's favourite - large architectural leaves in a beautiful lyre shape. Makes a dramatic statement in any room.</p>
+                <p>Care Level: Moderate</p>
+                <p>Light: Bright indirect light</p>
+                <p>Price: R 599</p>
+                <a href="enquiry.html">Enquire About This Product</a>
+            </article>
 
-          <article class="product-card fade-in">
-            <div class="product-img" style="background:#e0e8e1;">🫙</div>
-            <div class="product-body">
-              <span class="tag">Planters</span>
-              <h3>Glazed Ceramic Planter</h3>
-              <p>Handmade in Cape Town with a rich forest green glaze. Available in 15cm and 22cm sizes.</p>
-              <div class="product-footer">
-                <span class="price">R 175</span>
-                <a href="enquiry.html" class="btn btn-primary" style="padding:0.55rem 1.2rem; font-size:0.82rem;">Enquire</a>
-              </div>
-            </div>
-          </article>
+            <!-- Product 4 -->
+            <article class="product-card">
+                <h3>Peace Lily</h3>
+                <p>Category: Foliage Plants</p>
+                <p>A natural air purifier with graceful white blooms. Thrives in low light making it ideal for offices and bedrooms.</p>
+                <p>Care Level: Easy</p>
+                <p>Light: Low to medium indirect light</p>
+                <p>Price: R 179</p>
+                <a href="enquiry.html">Enquire About This Product</a>
+            </article>
+        </div><!-- end product-card-grid -->
+        </section>
 
-          <article class="product-card fade-in">
-            <div class="product-img" style="background:#e5ddd0;">🪹</div>
-            <div class="product-body">
-              <span class="tag">Planters</span>
-              <h3>Woven Seagrass Basket</h3>
-              <p>Natural seagrass pot covers with waterproof liner. Sustainable and endlessly stylish.</p>
-              <div class="product-footer">
-                <span class="price">R 139</span>
-                <a href="enquiry.html" class="btn btn-primary" style="padding:0.55rem 1.2rem; font-size:0.82rem;">Enquire</a>
-              </div>
-            </div>
-          </article>
-        </div>
+        <!-- CATEGORY 2: SUCCULENTS AND CACTI -->
+        <section id="succulents-cacti">
+            <h2>Succulents and Cacti</h2>
 
-        <!-- PRODUCT CATEGORY 4: Home Accessories -->
-        <h2 class="category-heading">🕯️ Home Accessories</h2>
-        <div class="products-grid">
-          <article class="product-card fade-in">
-            <div class="product-img" style="background:#f0ece3;">🕯️</div>
-            <div class="product-body">
-              <span class="tag">Candles</span>
-              <h3>Botanical Candle Set</h3>
-              <p>Soy wax candles infused with real dried botanicals. Lavender &amp; eucalyptus fragrances.</p>
-              <div class="product-footer">
-                <span class="price">R 145</span>
-                <a href="enquiry.html" class="btn btn-primary" style="padding:0.55rem 1.2rem; font-size:0.82rem;">Enquire</a>
-              </div>
-            </div>
-          </article>
+            <!-- Product 5 -->
+            <article class="product-card">
+                <h3>Desert Garden Kit</h3>
+                <p>Category: Succulents</p>
+                <p>Six mixed succulents with a hand-painted ceramic planter and premium succulent soil. A perfect gift or starter collection.</p>
+                <p>Care Level: Very Easy</p>
+                <p>Light: Bright direct or indirect light</p>
+                <p>Price: R 199</p>
+                <a href="enquiry.html">Enquire About This Product</a>
+            </article>
 
-          <article class="product-card fade-in">
-            <div class="product-img" style="background:#e8f0e4;">💧</div>
-            <div class="product-body">
-              <span class="tag">Care Tools</span>
-              <h3>Copper Watering Can</h3>
-              <p>A beautifully crafted small copper watering can — perfect for indoor plants and terribly elegant.</p>
-              <div class="product-footer">
-                <span class="price">R 399</span>
-                <a href="enquiry.html" class="btn btn-primary" style="padding:0.55rem 1.2rem; font-size:0.82rem;">Enquire</a>
-              </div>
-            </div>
-          </article>
+            <!-- Product 6 -->
+            <article class="product-card">
+                <h3>Aloe Vera - Extra Large</h3>
+                <p>Category: Succulents</p>
+                <p>The original healing plant. Stunning as a specimen plant and endlessly useful in the home. Drought tolerant and very low maintenance.</p>
+                <p>Care Level: Very Easy</p>
+                <p>Light: Bright direct light</p>
+                <p>Price: R 249</p>
+                <a href="enquiry.html">Enquire About This Product</a>
+            </article>
 
-          <article class="product-card fade-in">
-            <div class="product-img" style="background:#ede8e0;">📖</div>
-            <div class="product-body">
-              <span class="tag">Books</span>
-              <h3>The Plant Parent Guide</h3>
-              <p>Our curated guide to caring for 50 popular indoor plants. Perfect gift for new plant owners.</p>
-              <div class="product-footer">
-                <span class="price">R 229</span>
-                <a href="enquiry.html" class="btn btn-primary" style="padding:0.55rem 1.2rem; font-size:0.82rem;">Enquire</a>
-              </div>
-            </div>
-          </article>
-        </div>
+            <!-- Product 7 -->
+            <article class="product-card">
+                <h3>Moon Cactus</h3>
+                <p>Category: Cacti</p>
+                <p>A cheerful, brightly coloured grafted cactus that adds a pop of unexpected colour. Very low maintenance and long lasting.</p>
+                <p>Care Level: Easy</p>
+                <p>Light: Bright indirect light</p>
+                <p>Price: R 89</p>
+                <a href="enquiry.html">Enquire About This Product</a>
+            </article>
+        </section>
 
-      </div>
-    </section>
+        <!-- CATEGORY 3: POTS AND PLANTERS -->
+        <section id="pots-planters">
+            <h2>Pots and Planters</h2>
 
-    <!-- ===================== CTA ===================== -->
-    <!-- CTA STRIP: green strip encouraging enquiries -->
-    <section style="background:var(--clr-green); padding:4rem 0; text-align:center; color:var(--clr-cream);" aria-label="Enquiry call to action">
-      <div class="container">
-        <h2 style="color:var(--clr-cream); margin-bottom:0.8rem;">Can't find what you're looking for?</h2>
-        <p style="color:rgba(250,247,240,0.8); margin:0 auto 2rem;">We have over 200 varieties available. Send us an enquiry and our team will help you find the perfect plant or gift.</p>
-        <a href="enquiry.html" class="btn btn-accent">Make an Enquiry</a>
-      </div>
-    </section>
-  </main>
+            <!-- Product 8 -->
+            <article class="product-card">
+                <h3>Terracotta Set - 3 Pots</h3>
+                <p>Category: Pots and Planters</p>
+                <p>Hand-thrown terracotta pots in three graduated sizes. Unglazed finish that ages beautifully over time. Made by a local Cape Town potter.</p>
+                <p>Sizes: 10cm, 15cm, 20cm</p>
+                <p>Price: R 289</p>
+                <a href="enquiry.html">Enquire About This Product</a>
+            </article>
 
-  <!-- ===================== FOOTER ===================== -->
-  <!-- SITE FOOTER -->
-  <footer class="site-footer" aria-label="Site footer">
-    <div class="container">
-      <div class="footer-grid">
+            <!-- Product 9 -->
+            <article class="product-card">
+                <h3>Glazed Ceramic Planter</h3>
+                <p>Category: Pots and Planters</p>
+                <p>Handmade in Cape Town with a rich forest green glaze. Each piece is unique. Available in 15cm and 22cm sizes.</p>
+                <p>Sizes: 15cm or 22cm</p>
+                <p>Price: R 175</p>
+                <a href="enquiry.html">Enquire About This Product</a>
+            </article>
+
+            <!-- Product 10 -->
+            <article class="product-card">
+                <h3>Woven Seagrass Basket</h3>
+                <p>Category: Pots and Planters</p>
+                <p>Natural seagrass pot covers with a waterproof liner. Sustainable, stylish, and available in three sizes.</p>
+                <p>Sizes: Small, Medium, Large</p>
+                <p>Price: R 139</p>
+                <a href="enquiry.html">Enquire About This Product</a>
+            </article>
+        </section>
+
+        <!-- CATEGORY 4: HOME ACCESSORIES -->
+        <section id="home-accessories">
+            <h2>Home Accessories</h2>
+
+            <!-- Product 11 -->
+            <article class="product-card">
+                <h3>Botanical Candle Set</h3>
+                <p>Category: Home Accessories</p>
+                <p>Soy wax candles infused with real dried botanicals. Available in lavender and eucalyptus fragrances. Burns for up to 40 hours.</p>
+                <p>Set of: 2 candles</p>
+                <p>Price: R 145</p>
+                <a href="enquiry.html">Enquire About This Product</a>
+            </article>
+
+            <!-- Product 12 -->
+            <article class="product-card">
+                <h3>Copper Watering Can</h3>
+                <p>Category: Home Accessories</p>
+                <p>A beautifully crafted small copper watering can. Perfect for indoor plants and a stunning addition to any shelf or windowsill.</p>
+                <p>Capacity: 1 litre</p>
+                <p>Price: R 399</p>
+                <a href="enquiry.html">Enquire About This Product</a>
+            </article>
+
+            <!-- Product 13 -->
+            <article class="product-card">
+                <h3>The Plant Parent Guide</h3>
+                <p>Category: Home Accessories</p>
+                <p>Our curated guide to caring for 50 popular indoor plants. Covers watering, light, soil, and common problems. Perfect gift for new plant owners.</p>
+                <p>Pages: 180</p>
+                <p>Price: R 229</p>
+                <a href="enquiry.html">Enquire About This Product</a>
+            </article>
+        </section>
+
+        <!-- ENQUIRY CALL TO ACTION
+             Encourages users to get in touch if they need help. -->
+        <section id="product-cta">
+            <h2>Can't Find What You Are Looking For?</h2>
+            <p>We have over 200 varieties available. Send us an enquiry and our team will help you find the perfect plant or gift.</p>
+            <a href="enquiry.html">Make an Enquiry</a>
+        </section>
+
+    </main>
+
+    <!-- ================================================
+         FOOTER
+    ================================================ -->
+    <footer>
+
         <div class="footer-brand">
-          <a href="index.html" class="logo">
-            <span class="logo-icon">🌿</span> Verdant
-          </a>
-          <p>Bringing nature indoors since 2017. Proudly South African, sustainably sourced.</p>
+            <p>🌿 Verdant</p>
+            <p>Bringing nature indoors since 2017. Proudly South African and sustainably sourced.</p>
         </div>
-        <div class="footer-col">
-          <h4>Shop</h4>
-          <ul>
-            <li><a href="products.html">All Products</a></li>
-            <li><a href="products.html">Houseplants</a></li>
-            <li><a href="products.html">Pots &amp; Planters</a></li>
-            <li><a href="products.html">Accessories</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Company</h4>
-          <ul>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="enquiry.html">Make an Enquiry</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Contact</h4>
-          <ul>
-            <li><a href="mailto:hello@verdant.co.za">hello@verdant.co.za</a></li>
-            <li><a href="tel:+27214567890">+27 21 456 7890</a></li>
-            <li><a href="contact.html">32 Blossom Lane, Gardens, Cape Town</a></li>
-            <li><a href="contact.html">14 Oak Street, Rosebank, Johannesburg</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© 2026 Verdant (Pty) Ltd. All rights reserved.</span>
-        <span>Designed with 🌱 in South Africa</span>
-      </div>
-    </div>
-  </footer>
 
-  <script src="js/main.js"></script>
-  <script>
-    // Simple filter button interaction
-    document.querySelectorAll('.filter-btn').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
-        btn.classList.add('active');
-      });
-    });
-  </script>
+        <nav aria-label="Footer navigation">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="enquiry.html">Enquiry</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="footer-contact">
+            <h4>Contact Us</h4>
+            <p>Email: <a href="mailto:hello@verdant.co.za">hello@verdant.co.za</a></p>
+            <p>Phone: <a href="tel:+27214567890">+27 21 456 7890</a></p>
+            <p>Cape Town: 32 Blossom Lane, Gardens, Cape Town</p>
+            <p>Johannesburg: 14 Oak Street, Rosebank, Johannesburg</p>
+        </div>
+
+        <p>© 2026 Verdant (Pty) Ltd. All rights reserved.</p>
+
+    </footer>
+
+    <script src="js/main.js"></script>
+
 </body>
 </html>
