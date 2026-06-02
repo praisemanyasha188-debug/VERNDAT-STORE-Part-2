@@ -1,442 +1,242 @@
 <!DOCTYPE html>
-<!-- 
-  index.html — Verdant Store Homepage
-  This is the main landing page of the Verdant website.
-  Sections: hero banner, stats bar, featured products,
-  about teaser, customer testimonials, and a CTA banner.
-  Author: Rorisang | Student No: st10481852
+<!--
+    index.html - Verdant Store Homepage
+    This is the main landing page of the Verdant website.
+    Sections: header/nav, hero, featured products, about teaser,
+    testimonials, call to action, and footer.
+    Author: [Student Name] | Student No: [Student Number]
 -->
 <html lang="en">
+
 <head>
-  <!-- Character encoding set to UTF-8 to support all special characters -->
-  <meta charset="UTF-8" />
+    <!-- Character encoding set to UTF-8 to support all characters -->
+    <meta charset="UTF-8" />
 
-  <!-- Viewport tag makes the layout responsive on all screen sizes -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Viewport tag ensures the page works on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- SEO meta tags help search engines understand and rank this page -->
-  <meta name="description" content="Verdant is a curated artisan plant and home décor store. Discover handpicked houseplants, pots, and natural living accessories." />
-  <meta name="keywords" content="plants, houseplants, home décor, artisan, pots, natural living, Verdant store" />
-  <meta name="author" content="Verdant Store" />
+    <!-- SEO meta tags help search engines find and rank this page -->
+    <meta name="description" content="Verdant is a curated artisan plant and home decor store. Discover handpicked houseplants, pots, and natural living accessories." />
+    <meta name="keywords" content="plants, houseplants, home decor, artisan, pots, natural living, Verdant store, South Africa" />
+    <meta name="author" content="[Student Name]" />
 
-  <!-- Page title shown in the browser tab and search engine results -->
-  <title>Verdant — Artisan Plants &amp; Home</title>
+    <!-- Page title shown in the browser tab -->
+    <title>Verdant - Artisan Plants and Home</title>
 
-  <!-- External stylesheet: contains all global styles, variables, and component styles -->
-  <link rel="stylesheet" href="css/style.css" />
-
-  <style>
-    /* =============================================
-       PAGE-SPECIFIC STYLES FOR index.html
-       (Global/reusable styles live in css/style.css)
-    ============================================= */
-
-    /* HERO SECTION
-       Two-column CSS Grid: text left, visual right.
-       min-height: 90vh ensures it fills most of the screen. */
-    .hero {
-      min-height: 90vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 4rem;
-      padding: 6rem 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .hero-text h1 { margin-bottom: 1.2rem; }
-    /* The word "nature" in the h1 is wrapped in <em> and coloured green */
-    .hero-text h1 em { color: var(--clr-green); font-style: italic; }
-    .hero-text p { font-size: 1.1rem; color: var(--clr-muted); margin-bottom: 2rem; }
-    /* Flexbox row for the two CTA buttons */
-    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .hero-visual { position: relative; height: 500px; }
-
-    /* Base card style for the hero decorative floating cards */
-    .hero-card {
-      position: absolute;
-      background: var(--clr-cream);
-      border-radius: 12px;
-      padding: 1.5rem;
-      box-shadow: var(--shadow-lg);
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    /* Large main green card filling the visual area */
-    .hero-card-main {
-      top: 10%; left: 5%; right: 5%; bottom: 10%;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: var(--clr-green);
-      color: var(--clr-cream);
-      font-family: var(--ff-display);
-      font-size: 6rem;
-    }
-    /* Small floating badge at bottom-left */
-    .hero-card-badge { bottom: 8%; left: -5%; font-size: 0.88rem; white-space: nowrap; }
-    .hero-card-badge .badge-icon {
-      width: 40px; height: 40px;
-      background: var(--clr-accent);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem; flex-shrink: 0;
-    }
-    /* Small floating tag at top-right */
-    .hero-card-tag {
-      top: 5%; right: -5%;
-      background: var(--clr-dark); color: var(--clr-cream);
-      font-size: 0.85rem;
-      flex-direction: column; align-items: flex-start; gap: 0.2rem;
-    }
-
-    /* STATS BAR — dark strip with 4-column grid of key numbers */
-    .stats-bar { background: var(--clr-dark); color: var(--clr-cream); padding: 2.5rem 0; }
-    .stats-inner { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; }
-    .stat-item h3 { font-family: var(--ff-display); font-size: 2.4rem; color: var(--clr-accent); }
-    .stat-item p { font-size: 0.85rem; color: #a09880; margin: 0 auto; }
-
-    /* FEATURED section uses light cream background */
-    .featured { background: var(--clr-cream); }
-
-    /* ABOUT TEASER — two-column grid: visual left, text right */
-    .about-teaser { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-    .about-visual {
-      height: 400px;
-      background: var(--clr-green);
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 8rem; position: relative; overflow: hidden;
-    }
-    /* Decorative pseudo-element circle overlay */
-    .about-visual::after {
-      content: ''; position: absolute;
-      bottom: -40px; right: -40px;
-      width: 200px; height: 200px;
-      border-radius: 50%; background: rgba(255,255,255,0.06);
-    }
-    .about-text h2 { margin-bottom: 1rem; }
-    .about-text p { color: var(--clr-muted); margin-bottom: 1.5rem; }
-
-    /* TESTIMONIALS — green background section */
-    .testimonials { background: var(--clr-green); color: var(--clr-cream); }
-    .testimonials .tag { color: rgba(250,247,240,0.6); }
-    .testimonials h2 { color: var(--clr-cream); }
-    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
-    .testimonial-card {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 8px; padding: 2rem;
-    }
-    .stars { color: var(--clr-accent); margin-bottom: 0.8rem; font-size: 0.95rem; }
-    .testimonial-card p { font-size: 0.95rem; color: rgba(250,247,240,0.85); margin-bottom: 1.2rem; font-style: italic; }
-    .reviewer { font-size: 0.85rem; color: rgba(250,247,240,0.6); }
-
-    /* SCROLL FADE-IN ANIMATION
-       .fade-in starts hidden; "visible" class added by JS Intersection Observer */
-    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .fade-in.visible { opacity: 1; transform: none; }
-
-    /* RESPONSIVE — stacks to single column on smaller screens */
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; min-height: auto; }
-      .hero-visual { height: 300px; }
-      .stats-inner { grid-template-columns: repeat(2, 1fr); }
-      .about-teaser { grid-template-columns: 1fr; }
-      .testimonials-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+    <!-- Link to the external CSS stylesheet -->
+    <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
 
-  <!-- =================================================
-       SITE HEADER
-       Sticky header with logo and main navigation.
-       The <header> semantic tag identifies this to browsers and assistive tech.
-  ================================================= -->
-  <header class="site-header">
-    <div class="header-inner">
+    <!-- ================================================
+         HEADER
+         The <header> tag contains the logo and the main
+         navigation menu. It appears at the top of every page.
+    ================================================ -->
+    <header>
 
-      <!-- Logo links back to homepage on all pages -->
-      <a href="index.html" class="logo">
-        <span class="logo-icon">🌿</span>
-        Verdant
-      </a>
-
-      <!-- <nav> semantic tag marks this as the primary site navigation.
-           aria-label makes it descriptive for screen reader users. -->
-      <nav class="main-nav" aria-label="Main navigation">
-        <ul>
-          <!-- Navigation links to all 5 pages of the website -->
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="products.html">Products</a></li>
-          <li><a href="enquiry.html">Enquiry</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-
-    </div>
-  </header>
-
-  <!-- =================================================
-       MAIN CONTENT
-       <main> wraps all primary page content — only one per page.
-       Helps screen readers and search engines identify the core content.
-  ================================================= -->
-  <main>
-
-    <!-- HERO SECTION
-         Full-height intro section with headline, tagline,
-         CTA buttons, and a decorative floating card visual. -->
-    <section class="hero" aria-label="Hero banner">
-
-      <!-- Left: text and buttons -->
-      <div class="hero-text fade-in">
-        <span class="tag">Artisan · Curated · Sustainable</span>
-        <!-- h1 is the most important heading on the page — only one per page -->
-        <h1>Bring <em>nature</em> into your home</h1>
-        <p>Handpicked houseplants, artisan pots, and natural living accessories — sourced with care from local growers and makers.</p>
-        <!-- CTA buttons: primary action (shop) and secondary action (learn more) -->
-        <div class="hero-cta">
-          <a href="products.html" class="btn btn-primary">Shop Now</a>
-          <a href="about.html" class="btn btn-outline">Our Story</a>
-        </div>
-      </div>
-
-      <!-- Right: purely decorative visual — hidden from screen readers via aria-hidden -->
-      <div class="hero-visual fade-in" aria-hidden="true">
-        <div class="hero-card hero-card-main">🪴</div>
-        <div class="hero-card hero-card-badge">
-          <span class="badge-icon">🌱</span>
-          <div>
-            <strong style="display:block; font-weight:500;">New arrivals</strong>
-            <span style="color:var(--clr-muted); font-size:0.8rem;">Fresh every week</span>
-          </div>
-        </div>
-        <div class="hero-card hero-card-tag">
-          <span style="font-size:0.75rem; color:var(--clr-accent); letter-spacing:0.1em; text-transform:uppercase;">Bestseller</span>
-          <strong>Monstera</strong>
-          <span style="color:#a09880; font-size:0.82rem;">R 349</span>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- STATS BAR
-         Four trust-building statistics in a dark horizontal strip. -->
-    <section class="stats-bar" aria-label="Store highlights">
-      <div class="container">
-        <div class="stats-inner">
-          <div class="stat-item fade-in"><h3>200+</h3><p>Plant varieties in store</p></div>
-          <div class="stat-item fade-in"><h3>5 000+</h3><p>Happy customers</p></div>
-          <div class="stat-item fade-in"><h3>8</h3><p>Years of growing together</p></div>
-          <div class="stat-item fade-in"><h3>100%</h3><p>Sustainably sourced</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FEATURED PRODUCTS
-         4 product cards using the reusable .product-card component.
-         <article> is used for each card as each is an independent piece of content. -->
-    <section class="section featured" aria-labelledby="featured-heading">
-      <div class="container">
-        <div class="section-header fade-in">
-          <span class="tag">Handpicked for you</span>
-          <!-- id="featured-heading" links this h2 to the section via aria-labelledby -->
-          <h2 id="featured-heading">Featured Products</h2>
-          <p>Our most loved plants and accessories this season.</p>
+        <!-- Website logo - clicking it returns the user to the homepage -->
+        <div class="logo">
+            <a href="index.html">🌿 Verdant</a>
         </div>
 
-        <!-- CSS Grid auto-fills columns based on available space (min 260px each) -->
-        <div class="products-grid">
+        <!-- NAVIGATION
+             The <nav> tag marks the main navigation of the site.
+             It contains links to all 5 pages of the website. -->
+        <nav aria-label="Main navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="enquiry.html">Enquiry</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
 
-          <!-- Product Card 1: Monstera Deliciosa -->
-          <article class="product-card fade-in">
-            <div class="product-img">
-              🌿
-              <span class="product-badge">Bestseller</span>
+    </header>
+
+    <!-- ================================================
+         MAIN CONTENT
+         The <main> tag wraps all the primary content of the page.
+         There is only one <main> tag per page.
+    ================================================ -->
+    <main>
+
+        <!-- HERO SECTION
+             The hero is the first large section visitors see.
+             It contains the main heading, a short description,
+             and two call-to-action buttons. -->
+        <section id="hero">
+            <h1>Bring Nature Into Your Home</h1>
+            <p>Handpicked houseplants, artisan pots, and natural living accessories - sourced with care from local growers and makers across South Africa.</p>
+            <!-- Call to action buttons linking to other pages -->
+            <a href="products.html">Shop Now</a>
+            <a href="about.html">Our Story</a>
+        </section>
+
+        <!-- STATS SECTION
+             This section shows key facts about the business
+             to build trust with visitors. -->
+        <section id="stats">
+            <h2>Why Choose Verdant?</h2>
+
+            <!-- Each stat is wrapped in a div for grouping -->
+            <div class="stat-item">
+                <h3>200+</h3>
+                <p>Plant varieties in store</p>
             </div>
-            <div class="product-body">
-              <span class="tag">Foliage</span>
-              <h3>Monstera Deliciosa</h3>
-              <p>Bold tropical leaves that make an instant statement in any room.</p>
-              <div class="product-footer">
-                <span class="price">R 349</span>
-                <a href="products.html" class="btn btn-primary" style="padding:0.55rem 1.2rem; font-size:0.82rem;">View</a>
-              </div>
+
+            <div class="stat-item">
+                <h3>5 000+</h3>
+                <p>Happy customers</p>
             </div>
-          </article>
 
-          <!-- Product Card 2: Terracotta Set -->
-          <article class="product-card fade-in">
-            <div class="product-img" style="background:#e8e0d5;">
-              🪴
-              <span class="product-badge" style="background:var(--clr-green);">New</span>
+            <div class="stat-item">
+                <h3>8 Years</h3>
+                <p>Growing together</p>
             </div>
-            <div class="product-body">
-              <span class="tag">Pots &amp; Planters</span>
-              <h3>Terracotta Set (3)</h3>
-              <p>Hand-thrown terracotta pots in three graduated sizes, unglazed finish.</p>
-              <div class="product-footer">
-                <span class="price">R 289</span>
-                <a href="products.html" class="btn btn-primary" style="padding:0.55rem 1.2rem; font-size:0.82rem;">View</a>
-              </div>
+
+            <div class="stat-item">
+                <h3>100%</h3>
+                <p>Sustainably sourced</p>
             </div>
-          </article>
+        </section>
 
-          <!-- Product Card 3: Desert Garden Kit -->
-          <article class="product-card fade-in">
-            <div class="product-img" style="background:#ddeade;">🌵</div>
-            <div class="product-body">
-              <span class="tag">Succulents</span>
-              <h3>Desert Garden Kit</h3>
-              <p>Six mixed succulents with a hand-painted ceramic planter and soil.</p>
-              <div class="product-footer">
-                <span class="price">R 199</span>
-                <a href="products.html" class="btn btn-primary" style="padding:0.55rem 1.2rem; font-size:0.82rem;">View</a>
-              </div>
-            </div>
-          </article>
+        <!-- FEATURED PRODUCTS SECTION
+             Shows 4 popular products from the store.
+             Each product uses the <article> tag because each
+             product is an independent piece of content. -->
+        <section id="featured-products">
+            <h2>Featured Products</h2>
+            <p>Our most loved plants and accessories this season.</p>
 
-          <!-- Product Card 4: Botanical Candle Set -->
-          <article class="product-card fade-in">
-            <div class="product-img" style="background:#f0ece3;">🕯️</div>
-            <div class="product-body">
-              <span class="tag">Home Accessories</span>
-              <h3>Botanical Candle Set</h3>
-              <p>Soy wax candles infused with real dried botanicals — lavender &amp; eucalyptus.</p>
-              <div class="product-footer">
-                <span class="price">R 145</span>
-                <a href="products.html" class="btn btn-primary" style="padding:0.55rem 1.2rem; font-size:0.82rem;">View</a>
-              </div>
-            </div>
-          </article>
+            <!-- Product 1 -->
+            <article class="product-card">
+                <h3>Monstera Deliciosa</h3>
+                <p>Category: Foliage Plants</p>
+                <p>Bold tropical leaves that make an instant statement in any room. Easy to care for and fast growing.</p>
+                <p>Price: R 349</p>
+                <a href="products.html">View Product</a>
+            </article>
 
-        </div><!-- end .products-grid -->
+            <!-- Product 2 -->
+            <article class="product-card">
+                <h3>Terracotta Set (3 Pots)</h3>
+                <p>Category: Pots and Planters</p>
+                <p>Hand-thrown terracotta pots in three graduated sizes with a beautiful unglazed finish.</p>
+                <p>Price: R 289</p>
+                <a href="products.html">View Product</a>
+            </article>
 
-        <!-- Link to the full product catalogue -->
-        <div style="text-align:center; margin-top:3rem;">
-          <a href="products.html" class="btn btn-outline">View All Products</a>
-        </div>
-      </div>
-    </section>
+            <!-- Product 3 -->
+            <article class="product-card">
+                <h3>Desert Garden Kit</h3>
+                <p>Category: Succulents</p>
+                <p>Six mixed succulents with a hand-painted ceramic planter and premium succulent soil.</p>
+                <p>Price: R 199</p>
+                <a href="products.html">View Product</a>
+            </article>
 
-    <!-- ABOUT TEASER
-         Two-column layout teasing the brand story. Links to about.html. -->
-    <section class="section" aria-labelledby="about-heading">
-      <div class="container">
-        <div class="about-teaser">
-          <!-- Decorative visual (left) — aria-hidden removes it from screen readers -->
-          <div class="about-visual fade-in" aria-hidden="true">🌳</div>
-          <div class="about-text fade-in">
-            <span class="tag">Our Story</span>
-            <h2 id="about-heading">Rooted in a love for living spaces</h2>
+            <!-- Product 4 -->
+            <article class="product-card">
+                <h3>Botanical Candle Set</h3>
+                <p>Category: Home Accessories</p>
+                <p>Soy wax candles infused with real dried botanicals in lavender and eucalyptus fragrances.</p>
+                <p>Price: R 145</p>
+                <a href="products.html">View Product</a>
+            </article>
+
+            <!-- Link to see all products -->
+            <a href="products.html">View All Products</a>
+        </section>
+
+        <!-- ABOUT TEASER SECTION
+             A short introduction to the brand story.
+             Links to the full About Us page. -->
+        <section id="about-teaser">
+            <h2>Rooted in a Love for Living Spaces</h2>
             <p>Verdant began in 2017 as a small weekend market stall run by two plant lovers in Cape Town. Today we are a proudly South African online and in-store retailer with a mission to make sustainable, nature-inspired living accessible to everyone.</p>
-            <p>Every product we carry is either locally grown, locally made, or ethically sourced — because we believe beautiful spaces and a healthy planet go hand in hand.</p>
-            <a href="about.html" class="btn btn-primary">Meet the Team</a>
-          </div>
-        </div>
-      </div>
-    </section>
+            <p>Every product we carry is either locally grown, locally made, or ethically sourced.</p>
+            <a href="about.html">Meet the Team</a>
+        </section>
 
-    <!-- TESTIMONIALS
-         Three customer reviews on a green background to build credibility. -->
-    <section class="section testimonials" aria-labelledby="testimonials-heading">
-      <div class="container">
-        <div class="section-header fade-in">
-          <span class="tag">Happy customers</span>
-          <h2 id="testimonials-heading">What people are saying</h2>
-        </div>
-        <div class="testimonials-grid">
-          <div class="testimonial-card fade-in">
-            <!-- Star rating using Unicode characters -->
-            <div class="stars">★★★★★</div>
-            <p>"My Monstera arrived perfectly packaged and so healthy. Verdant is my go-to for all things green!"</p>
-            <span class="reviewer">— Amahle N., Johannesburg</span>
-          </div>
-          <div class="testimonial-card fade-in">
-            <div class="stars">★★★★★</div>
-            <p>"The terracotta set is absolutely beautiful. I've already ordered two more sets for gifts. Exceptional quality."</p>
-            <span class="reviewer">— Ruben O., Cape Town</span>
-          </div>
-          <div class="testimonial-card fade-in">
-            <div class="stars">★★★★★</div>
-            <p>"Fast delivery, gorgeous plants, and the care guides included were incredibly helpful. 10/10 recommend."</p>
-            <span class="reviewer">— Lerato M., Pretoria</span>
-          </div>
-        </div>
-      </div>
-    </section>
+        <!-- TESTIMONIALS SECTION
+             Customer reviews help build trust with new visitors. -->
+        <section id="testimonials">
+            <h2>What Our Customers Say</h2>
 
-    <!-- CTA BANNER
-         Full-width accent-coloured strip encouraging users to visit the shop. -->
-    <section class="section" style="background:var(--clr-accent); color:#fff; text-align:center;" aria-label="Call to action">
-      <div class="container">
-        <span class="tag" style="color:rgba(255,255,255,0.7);">Don't miss out</span>
-        <h2 style="color:#fff; margin-bottom:1rem;">Ready to grow your collection?</h2>
-        <p style="color:rgba(255,255,255,0.85); margin:0 auto 2rem;">Browse over 200 plant varieties, artisan pots, and home accessories — all available online with nationwide delivery.</p>
-        <a href="products.html" class="btn" style="background:#fff; color:var(--clr-accent); border-color:#fff;">Shop the Collection</a>
-      </div>
-    </section>
+            <!-- Each review is wrapped in a blockquote tag
+                 as it is a quotation from a customer -->
+            <blockquote>
+                <p>"My Monstera arrived perfectly packaged and so healthy. Verdant is my go-to for all things green!"</p>
+                <cite>- Amahle N., Johannesburg</cite>
+            </blockquote>
 
-  </main><!-- end <main> -->
+            <blockquote>
+                <p>"The terracotta set is absolutely beautiful. I have already ordered two more sets for gifts. Exceptional quality."</p>
+                <cite>- Ruben O., Cape Town</cite>
+            </blockquote>
 
-  <!-- =================================================
-       SITE FOOTER
-       <footer> semantic tag — shared across all pages.
-       Contains brand blurb, navigation links, and contact info.
-  ================================================= -->
-  <footer class="site-footer" aria-label="Site footer">
-    <div class="container">
-      <div class="footer-grid">
-        <!-- Brand column -->
+            <blockquote>
+                <p>"Fast delivery, gorgeous plants, and the care guides included were incredibly helpful. 10 out of 10."</p>
+                <cite>- Lerato M., Pretoria</cite>
+            </blockquote>
+        </section>
+
+        <!-- CALL TO ACTION SECTION
+             Encourages visitors to visit the products page. -->
+        <section id="cta">
+            <h2>Ready to Grow Your Collection?</h2>
+            <p>Browse over 200 plant varieties, artisan pots, and home accessories - all available online with nationwide delivery across South Africa.</p>
+            <a href="products.html">Shop the Collection</a>
+        </section>
+
+    </main>
+
+    <!-- ================================================
+         FOOTER
+         The <footer> tag contains copyright info,
+         navigation links, and contact details.
+         It appears at the bottom of every page.
+    ================================================ -->
+    <footer>
+
+        <!-- Footer brand description -->
         <div class="footer-brand">
-          <a href="index.html" class="logo"><span class="logo-icon">🌿</span> Verdant</a>
-          <p>Bringing nature indoors since 2017. Proudly South African, sustainably sourced.</p>
+            <p>🌿 Verdant</p>
+            <p>Bringing nature indoors since 2017. Proudly South African and sustainably sourced.</p>
         </div>
-        <!-- Shop links column -->
-        <div class="footer-col">
-          <h4>Shop</h4>
-          <ul>
-            <li><a href="products.html">All Products</a></li>
-            <li><a href="products.html">Houseplants</a></li>
-            <li><a href="products.html">Pots &amp; Planters</a></li>
-            <li><a href="products.html">Accessories</a></li>
-          </ul>
-        </div>
-        <!-- Company links column -->
-        <div class="footer-col">
-          <h4>Company</h4>
-          <ul>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="enquiry.html">Make an Enquiry</a></li>
-          </ul>
-        </div>
-        <!-- Contact details column — uses mailto: and tel: links -->
-        <div class="footer-col">
-          <h4>Contact</h4>
-          <ul>
-            <li><a href="mailto:hello@verdant.co.za">hello@verdant.co</a></li>
-            <li><a href="tel:+27214567890">+27 21 456 7890</a></li>
-            <li><a href="contact.html">32 Blossom Lane, Gardens, Cape Town</a></li>
-            <li><a href="contact.html">14 Oak Street, Rosebank, Johannesburg</a></li>
-          </ul>
-        </div>
-      </div>
-      <!-- Copyright bar at the very bottom of the page -->
-      <div class="footer-bottom">
-        <span>© 2026 Verdant (Pty) Ltd. All rights reserved.</span>
-        <span>Designed with 🌱 in South Africa</span>
-      </div>
-    </div>
-  </footer>
 
-  <!-- External JavaScript file linked at the bottom of <body>
-       so the HTML is fully loaded before the script runs -->
-  <script src="js/main.js"></script>
+        <!-- Footer navigation links -->
+        <nav aria-label="Footer navigation">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="enquiry.html">Enquiry</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Footer contact information -->
+        <div class="footer-contact">
+            <h4>Contact Us</h4>
+            <p>Email: <a href="mailto:hello@verdant.co.za">hello@verdant.co.za</a></p>
+            <p>Phone: <a href="tel:+27214567890">+27 21 456 7890</a></p>
+            <p>Cape Town: 32 Blossom Lane, Gardens, Cape Town</p>
+            <p>Johannesburg: 14 Oak Street, Rosebank, Johannesburg</p>
+        </div>
+
+        <!-- Copyright notice -->
+        <p>© 2026 Verdant (Pty) Ltd. All rights reserved.</p>
+
+    </footer>
+
+    <!-- Link to the external JavaScript file.
+         Placed at the bottom so HTML loads before the script runs. -->
+    <script src="js/main.js"></script>
 
 </body>
 </html>
