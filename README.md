@@ -11,9 +11,9 @@
 
 ## Project Overview
 
-Verdant is a fictional South African retail store specialising in artisan houseplants, handcrafted pots, and natural home accessories. This project is a multi-page website built using HTML, CSS, and JavaScript as Part 1 of the WEDE Portfolio of Evidence (PoE).
+Verdant is a fictional South African retail store specialising in artisan houseplants, handcrafted pots, and natural home accessories. This project is a multi page website built using HTML, CSS, and JavaScript as Part 1 of the WEDE Portfolio of Evidence (PoE).
 
-The website is designed to be fully functional, visually appealing, and easy to navigate — meeting the needs of Verdant's target audience: South African consumers interested in sustainable, nature-inspired living.
+The website is designed to be fully functional, visually appealing, and easy to navigate meeting the needs of Verdant's target audience: South African consumers interested in sustainable, nature-inspired living.
 
 ---
 
