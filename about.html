@@ -1,255 +1,444 @@
 <!DOCTYPE html>
-<!--
-    about.html - Verdant Store: About Us Page
-    This page tells the story of the Verdant brand.
-    Sections: header/nav, page heading, origin story,
-    mission and vision, core values, team members,
-    company timeline, and footer.
-    Author: Rorisang Manyasha | Student No: ST10481852
+<!-- 
+  about.html — Verdant Store: About Us Page
+  Sections: origin story, mission/vision, core values, team members, timeline.
+  Author: [Student Name] | Student No: [Student Number]
 -->
 <html lang="en">
-
 <head>
-    <!-- Character encoding set to UTF-8 -->
-    <meta charset="UTF-8" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn about Verdant's story, mission, and the passionate team behind South Africa's favourite artisan plant and home store." />
+  <meta name="keywords" content="Verdant story, about us, South African plant store, sustainable, team" />
+  <meta name="author" content="Verdant Store" />
+  <title>About Us — Verdant</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* --- Mission Grid --- */
+    .mission-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
 
-    <!-- Viewport tag for mobile responsiveness -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    .mission-visual {
+      height: 440px;
+      background: var(--clr-green);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8rem;
+      position: relative;
+    }
 
-    <!-- SEO meta tags for this specific page -->
-    <meta name="description" content="Learn about Verdant's story, mission, and the passionate team behind South Africa's favourite artisan plant and home store." />
-    <meta name="keywords" content="Verdant story, about us, South African plant store, sustainable, team, history" />
-    <meta name="author" content="Rorisang Manyasha" />
+    .mission-visual .badge {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      background: var(--clr-accent);
+      color: #fff;
+      border-radius: 50%;
+      width: 110px;
+      height: 110px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--ff-display);
+      line-height: 1.1;
+      text-align: center;
+      font-size: 0.8rem;
+      box-shadow: var(--shadow);
+    }
 
-    <!-- Page title -->
-    <title>About Us - Verdant</title>
+    .mission-visual .badge strong { font-size: 1.6rem; }
 
-    <!-- Link to the shared CSS stylesheet -->
-    <link rel="stylesheet" href="css/style.css" />
+    .mission-text h2 { margin-bottom: 1rem; }
+    .mission-text p { color: var(--clr-muted); margin-bottom: 1rem; }
+
+    /* --- Values --- */
+    .values { background: var(--clr-cream); }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .value-card {
+      padding: 2rem;
+      border: 1px solid var(--clr-border);
+      border-radius: 8px;
+      background: var(--clr-bg);
+    }
+
+    .value-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .value-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .value-card p { color: var(--clr-muted); font-size: 0.92rem; max-width: none; }
+
+    /* --- Team --- */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+
+    .team-card {
+      text-align: center;
+      background: var(--clr-cream);
+      border-radius: 8px;
+      padding: 2rem 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .team-avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: var(--clr-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      margin: 0 auto 1.2rem;
+    }
+
+    .team-card h3 { font-size: 1.1rem; margin-bottom: 0.2rem; }
+
+    .team-card .role {
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--clr-green);
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+    }
+
+    .team-card p { font-size: 0.9rem; color: var(--clr-muted); margin: 0 auto; }
+
+    /* --- Timeline --- */
+    .timeline { background: var(--clr-dark); color: var(--clr-cream); }
+    .timeline .tag { color: rgba(250,247,240,0.6); }
+    .timeline h2 { color: var(--clr-cream); }
+
+    .timeline-list {
+      margin-top: 3rem;
+      position: relative;
+      padding-left: 2rem;
+      border-left: 2px solid rgba(255,255,255,0.12);
+    }
+
+    .timeline-item {
+      padding: 0 0 2.5rem 2rem;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.45rem;
+      top: 0.3rem;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--clr-accent);
+      border: 2px solid var(--clr-dark);
+    }
+
+    .timeline-year {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--clr-accent);
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+    }
+
+    .timeline-item h3 { color: var(--clr-cream); font-size: 1.1rem; margin-bottom: 0.4rem; }
+    .timeline-item p { color: #a09880; font-size: 0.92rem; }
+
+    /* Fade-in */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 900px) {
+      .mission-grid { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: 1fr 1fr; }
+      .team-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 580px) {
+      .values-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
-
 <body>
 
-    <!-- ================================================
-         HEADER
-         Shared across all pages. Contains logo and nav.
-    ================================================ -->
-    <header>
+  <!-- ===================== HEADER ===================== -->
+  <!-- SITE HEADER: sticky navigation bar shared across all pages -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🌿</span>
+        Verdant
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="enquiry.html">Enquiry</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-        <!-- Logo links back to homepage -->
-        <div class="logo">
-            <a href="index.html">🌿 Verdant</a>
-        </div>
+  <!-- ===================== PAGE HERO ===================== -->
+  <!-- PAGE HERO: green banner at top of inner pages with title and subtitle -->
+    <section class="page-hero" aria-label="Page header">
+    <div class="container">
+      <span class="tag">Our Story</span>
+      <h1>Rooted in passion,<br />grown with purpose</h1>
+      <p>Since 2017, we've been on a mission to bring sustainably sourced plants and artisan home goods to South African homes.</p>
+    </div>
+  </section>
 
-        <!-- Main navigation linking to all 5 pages -->
-        <nav aria-label="Main navigation">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="enquiry.html">Enquiry</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-
-    </header>
-
-    <!-- ================================================
-         MAIN CONTENT
-    ================================================ -->
-    <main>
-
-        <!-- PAGE HEADING SECTION
-             A heading section at the top of every inner page
-             that tells the user what page they are on. -->
-        <section id="page-heading">
-            <h1>About Us</h1>
-            <p>Rooted in passion, grown with purpose. Since 2017 we have been on a mission to bring sustainably sourced plants and artisan home goods to South African homes.</p>
-        </section>
-
-        <!-- ORIGIN STORY SECTION
-             Tells the history of how Verdant started. -->
-        <section id="our-story">
-            <h2>How It Started</h2>
+  <!-- MAIN CONTENT: all primary page content is wrapped in <main> -->
+  <main>
+    <!-- ===================== MISSION ===================== -->
+    <!-- ORIGIN STORY: two-column grid with decorative visual and text content -->
+    <section class="section" aria-labelledby="mission-heading">
+      <div class="container">
+        <div class="mission-grid">
+          <div class="mission-visual fade-in" aria-hidden="true">
+            🌳
+            <div class="badge">
+              <strong>2017</strong>
+              <span>Founded</span>
+            </div>
+          </div>
+          <div class="mission-text fade-in">
+            <span class="tag">How it started</span>
+            <h2 id="mission-heading">From a weekend stall to a national store</h2>
             <p>Verdant was born at the Oranjezicht City Farm Market in Cape Town, where co-founders Yolanda Petersen and Sipho Dlamini spent every Saturday selling potted plants they propagated from their own gardens.</p>
-            <p>What started as a side passion quickly grew into something bigger. Customers kept coming back not just for the plants, but for the care guides, the repotting tips, and the genuine love for greenery that Yolanda and Sipho brought to every interaction.</p>
-            <p>In 2019, they opened their first physical store in Cape Town's Gardens neighbourhood. Today, Verdant operates two stores and a thriving online shop, serving customers across South Africa.</p>
-        </section>
+            <p>What started as a side passion quickly grew into something bigger. Customers kept coming back — not just for the plants, but for the care guides, the repotting tips, and the genuine love for greenery that Yolanda and Sipho brought to every interaction.</p>
+            <p>In 2019, they opened their first physical store in Cape Town's Gardens neighbourhood. Today, Verdant operates two stores and a thriving online shop, serving customers across South Africa with the same warmth and expertise that started it all.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <!-- MISSION AND VISION SECTION
-             Clearly states what the company stands for. -->
-        <section id="mission-vision">
-            <h2>Our Mission and Vision</h2>
+    <!-- ===================== MISSION & VISION ===================== -->
+    <!-- MISSION & VISION: two dark/green cards side by side -->
+    <section class="section" style="background:var(--clr-cream); padding-top:0;" aria-labelledby="mv-heading">
+      <div class="container">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:2rem;">
+          <div style="background:var(--clr-green); color:var(--clr-cream); padding:2.5rem; border-radius:8px;" class="fade-in">
+            <h3 style="color:var(--clr-cream); margin-bottom:0.8rem;">🎯 Our Mission</h3>
+            <p style="color:rgba(250,247,240,0.85); max-width:none;">To make nature-inspired living accessible to every South African home, through ethically sourced plants and handcrafted goods that last a lifetime.</p>
+          </div>
+          <div style="background:var(--clr-dark); color:var(--clr-cream); padding:2.5rem; border-radius:8px;" class="fade-in">
+            <h3 style="color:var(--clr-cream); margin-bottom:0.8rem;">🌍 Our Vision</h3>
+            <p style="color:rgba(250,247,240,0.85); max-width:none;">A South Africa where every home has a thriving indoor garden, where communities grow together, and where sustainable consumption is the norm.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            <!-- Mission statement -->
-            <div class="mission">
-                <h3>Our Mission</h3>
-                <p>To make nature-inspired living accessible to every South African home, through ethically sourced plants and handcrafted goods that last a lifetime.</p>
-            </div>
+    <!-- ===================== VALUES ===================== -->
+    <!-- CORE VALUES: 6-card grid showing what Verdant stands for -->
+    <section class="section values" aria-labelledby="values-heading">
+      <div class="container">
+        <div class="section-header fade-in">
+          <span class="tag">What we stand for</span>
+          <h2 id="values-heading">Our Core Values</h2>
+          <p>These principles guide everything we do — from how we source our products to how we talk to customers.</p>
+        </div>
+        <div class="values-grid">
+          <div class="value-card fade-in">
+            <div class="value-icon">🌱</div>
+            <h3>Sustainability</h3>
+            <p>Every product we sell is either locally grown, locally handmade, or sourced from suppliers who share our commitment to environmental responsibility.</p>
+          </div>
+          <div class="value-card fade-in">
+            <div class="value-icon">🤝</div>
+            <h3>Community</h3>
+            <p>We partner with local growers, artists, and small producers — keeping money in our communities and celebrating South African craftsmanship.</p>
+          </div>
+          <div class="value-card fade-in">
+            <div class="value-icon">💚</div>
+            <h3>Education</h3>
+            <p>We include detailed care guides with every plant purchase and host free monthly workshops for beginner and intermediate plant parents.</p>
+          </div>
+          <div class="value-card fade-in">
+            <div class="value-icon">✨</div>
+            <h3>Quality</h3>
+            <p>We never compromise on quality. Every plant is inspected before shipping and every artisan product is vetted by our in-house curation team.</p>
+          </div>
+          <div class="value-card fade-in">
+            <div class="value-icon">💬</div>
+            <h3>Transparency</h3>
+            <p>We're honest about where our products come from, how they're priced, and what happens if something goes wrong. No hidden costs or fine print.</p>
+          </div>
+          <div class="value-card fade-in">
+            <div class="value-icon">🎁</div>
+            <h3>Delight</h3>
+            <p>Every Verdant order is packaged beautifully and includes a handwritten care note. We want unboxing a Verdant delivery to feel like receiving a gift.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            <!-- Vision statement -->
-            <div class="vision">
-                <h3>Our Vision</h3>
-                <p>A South Africa where every home has a thriving indoor garden, where communities grow together, and where sustainable consumption is the norm.</p>
-            </div>
-        </section>
+    <!-- ===================== TEAM ===================== -->
+    <!-- TEAM SECTION: 6 team member cards with name, role, and bio -->
+    <section class="section" aria-labelledby="team-heading">
+      <div class="container">
+        <div class="section-header fade-in">
+          <span class="tag">The People</span>
+          <h2 id="team-heading">Meet Our Team</h2>
+          <p>A small but passionate group united by a love of greenery and great design.</p>
+        </div>
+        <div class="team-grid">
+          <div class="team-card fade-in">
+            <div class="team-avatar">👩🏾</div>
+            <h3>Yolanda Petersen</h3>
+            <div class="role">Co-Founder &amp; CEO</div>
+            <p>Former landscape architect turned plant entrepreneur. Yolanda's eye for design shapes every product and space at Verdant.</p>
+          </div>
+          <div class="team-card fade-in">
+            <div class="team-avatar">👨🏿</div>
+            <h3>Sipho Dlamini</h3>
+            <div class="role">Co-Founder &amp; Head Grower</div>
+            <p>Sipho manages relationships with over 40 local growers and spends his weekends propagating rare tropicals in the Verdant greenhouse.</p>
+          </div>
+          <div class="team-card fade-in">
+            <div class="team-avatar">👩🏼</div>
+            <h3>Riana van der Berg</h3>
+            <div class="role">Head of Curation</div>
+            <p>With a background in interior styling, Riana selects every accessory and home product that joins the Verdant range.</p>
+          </div>
+          <div class="team-card fade-in">
+            <div class="team-avatar">👨🏽</div>
+            <h3>Kwame Asante</h3>
+            <div class="role">E-commerce Manager</div>
+            <p>Kwame keeps the online store running smoothly — from product listings and logistics to the monthly newsletter.</p>
+          </div>
+          <div class="team-card fade-in">
+            <div class="team-avatar">👩🏻</div>
+            <h3>Mei Lin Tan</h3>
+            <div class="role">Customer Experience Lead</div>
+            <p>Mei Lin answers every customer email personally and runs our popular Sunday plant care workshops at both stores.</p>
+          </div>
+          <div class="team-card fade-in">
+            <div class="team-avatar">👨🏾</div>
+            <h3>Themba Nkosi</h3>
+            <div class="role">Logistics &amp; Fulfilment</div>
+            <p>Themba leads the packaging and delivery team, ensuring every plant arrives safely, beautifully boxed, and on time.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <!-- CORE VALUES SECTION
-             Lists the six values that guide how Verdant operates. -->
-        <section id="values">
-            <h2>Our Core Values</h2>
+    <!-- ===================== TIMELINE ===================== -->
+    <!-- TIMELINE: history of the company from 2017 to 2026 -->
+    <section class="section timeline" aria-labelledby="timeline-heading">
+      <div class="container">
+        <div class="section-header fade-in">
+          <span class="tag">Our Journey</span>
+          <h2 id="timeline-heading">How we got here</h2>
+        </div>
+        <div class="timeline-list">
+          <div class="timeline-item fade-in">
+            <div class="timeline-year">2017</div>
+            <h3>The First Stall</h3>
+            <p>Yolanda and Sipho debut at the Oranjezicht City Farm Market with 30 hand-potted houseplants. They sell out in two hours.</p>
+          </div>
+          <div class="timeline-item fade-in">
+            <div class="timeline-year">2018</div>
+            <h3>Online Launch</h3>
+            <p>verdant.co.za goes live. First online order arrives from Durban within 24 hours of launch.</p>
+          </div>
+          <div class="timeline-item fade-in">
+            <div class="timeline-year">2019</div>
+            <h3>First Brick &amp; Mortar</h3>
+            <p>Verdant opens its first physical store at 32 Blossom Lane, Gardens, Cape Town — a converted Victorian cottage with a working greenhouse.</p>
+          </div>
+          <div class="timeline-item fade-in">
+            <div class="timeline-year">2022</div>
+            <h3>Johannesburg Expansion</h3>
+            <p>A second store opens in Rosebank, Johannesburg, serving the growing northern demand. The team grows to 12 full-time staff.</p>
+          </div>
+          <div class="timeline-item fade-in">
+            <div class="timeline-year">2024</div>
+            <h3>Sustainability Certification</h3>
+            <p>Verdant achieves full Fair Trade and sustainable sourcing certification across its entire product range.</p>
+          </div>
+          <div class="timeline-item fade-in">
+            <div class="timeline-year">2026</div>
+            <h3>5 000 Customers Milestone</h3>
+            <p>Verdant celebrates serving over 5 000 happy customers nationwide — and launches its first plant subscription box service.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-            <!-- Each value is in its own article tag as it is
-                 an independent piece of content -->
-            <article class="value-item">
-                <h3>Sustainability</h3>
-                <p>Every product we sell is either locally grown, locally handmade, or sourced from suppliers who share our commitment to environmental responsibility.</p>
-            </article>
-
-            <article class="value-item">
-                <h3>Community</h3>
-                <p>We partner with local growers, artists, and small producers - keeping money in our communities and celebrating South African craftsmanship.</p>
-            </article>
-
-            <article class="value-item">
-                <h3>Education</h3>
-                <p>We include detailed care guides with every plant purchase and host free monthly workshops for beginner and intermediate plant parents.</p>
-            </article>
-
-            <article class="value-item">
-                <h3>Quality</h3>
-                <p>We never compromise on quality. Every plant is inspected before shipping and every artisan product is vetted by our in-house curation team.</p>
-            </article>
-
-            <article class="value-item">
-                <h3>Transparency</h3>
-                <p>We are honest about where our products come from, how they are priced, and what happens if something goes wrong. No hidden costs or fine print.</p>
-            </article>
-
-            <article class="value-item">
-                <h3>Delight</h3>
-                <p>Every Verdant order is packaged beautifully and includes a handwritten care note. We want unboxing a Verdant delivery to feel like receiving a gift.</p>
-            </article>
-        </section>
-
-        <!-- TEAM SECTION
-             Introduces the six members of the Verdant team. -->
-        <section id="team">
-            <h2>Meet Our Team</h2>
-            <p>A small but passionate group united by a love of greenery and great design.</p>
-
-            <!-- Each team member uses an article tag -->
-            <article class="team-member">
-                <h3>Yolanda Petersen</h3>
-                <p>Role: Co-Founder and CEO</p>
-                <p>Former landscape architect turned plant entrepreneur. Yolanda's eye for design shapes every product and space at Verdant.</p>
-            </article>
-
-            <article class="team-member">
-                <h3>Sipho Dlamini</h3>
-                <p>Role: Co-Founder and Head Grower</p>
-                <p>Sipho manages relationships with over 40 local growers and spends his weekends propagating rare tropicals in the Verdant greenhouse.</p>
-            </article>
-
-            <article class="team-member">
-                <h3>Riana van der Berg</h3>
-                <p>Role: Head of Curation</p>
-                <p>With a background in interior styling, Riana selects every accessory and home product that joins the Verdant range.</p>
-            </article>
-
-            <article class="team-member">
-                <h3>Kwame Asante</h3>
-                <p>Role: E-commerce Manager</p>
-                <p>Kwame keeps the online store running smoothly - from product listings and logistics to the monthly newsletter.</p>
-            </article>
-
-            <article class="team-member">
-                <h3>Mei Lin Tan</h3>
-                <p>Role: Customer Experience Lead</p>
-                <p>Mei Lin answers every customer email personally and runs our popular Sunday plant care workshops at both stores.</p>
-            </article>
-
-            <article class="team-member">
-                <h3>Themba Nkosi</h3>
-                <p>Role: Logistics and Fulfilment</p>
-                <p>Themba leads the packaging and delivery team, ensuring every plant arrives safely, beautifully boxed, and on time.</p>
-            </article>
-        </section>
-
-        <!-- TIMELINE SECTION
-             Shows the key milestones in the company's history. -->
-        <section id="timeline">
-            <h2>Our Journey</h2>
-
-            <!-- Each milestone is wrapped in a div for grouping -->
-            <div class="timeline-item">
-                <h3>2017 - The First Stall</h3>
-                <p>Yolanda and Sipho debut at the Oranjezicht City Farm Market with 30 hand-potted houseplants. They sell out in two hours.</p>
-            </div>
-
-            <div class="timeline-item">
-                <h3>2018 - Online Launch</h3>
-                <p>verdant.co.za goes live. The first online order arrives from Durban within 24 hours of launch.</p>
-            </div>
-
-            <div class="timeline-item">
-                <h3>2019 - First Store Opens</h3>
-                <p>Verdant opens its first physical store at 32 Blossom Lane, Gardens, Cape Town - a converted Victorian cottage with a working greenhouse.</p>
-            </div>
-
-            <div class="timeline-item">
-                <h3>2022 - Johannesburg Expansion</h3>
-                <p>A second store opens in Rosebank, Johannesburg. The team grows to 12 full-time staff members.</p>
-            </div>
-
-            <div class="timeline-item">
-                <h3>2024 - Sustainability Certification</h3>
-                <p>Verdant achieves full Fair Trade and sustainable sourcing certification across its entire product range.</p>
-            </div>
-
-            <div class="timeline-item">
-                <h3>2026 - 5 000 Customers Milestone</h3>
-                <p>Verdant celebrates serving over 5 000 happy customers nationwide and launches its first plant subscription box service.</p>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- ================================================
-         FOOTER
-         Shared across all pages.
-    ================================================ -->
-    <footer>
-
+  <!-- ===================== FOOTER ===================== -->
+  <!-- SITE FOOTER: brand info, navigation links, and contact details -->
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid">
         <div class="footer-brand">
-            <p>🌿 Verdant</p>
-            <p>Bringing nature indoors since 2017. Proudly South African and sustainably sourced.</p>
+          <a href="index.html" class="logo">
+            <span class="logo-icon">🌿</span> Verdant
+          </a>
+          <p>Bringing nature indoors since 2017. Proudly South African, sustainably sourced.</p>
         </div>
-
-        <nav aria-label="Footer navigation">
-            <h4>Quick Links</h4>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="enquiry.html">Enquiry</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-
-        <div class="footer-contact">
-            <h4>Contact Us</h4>
-            <p>Email: <a href="mailto:hello@verdant.co.za">hello@verdant.co.za</a></p>
-            <p>Phone: <a href="tel:+27214567890">+27 21 456 7890</a></p>
-            <p>Cape Town: 32 Blossom Lane, Gardens, Cape Town</p>
-            <p>Johannesburg: 14 Oak Street, Rosebank, Johannesburg</p>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="products.html">All Products</a></li>
+            <li><a href="products.html">Houseplants</a></li>
+            <li><a href="products.html">Pots &amp; Planters</a></li>
+            <li><a href="products.html">Accessories</a></li>
+          </ul>
         </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="enquiry.html">Make an Enquiry</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:hello@verdant.co.za">hello@verdant.co.za</a></li>
+            <li><a href="tel:+27214567890">+27 21 456 7890</a></li>
+            <li><a href="contact.html">32 Blossom Lane, Gardens, Cape Town</a></li>
+            <li><a href="contact.html">14 Oak Street, Rosebank, Johannesburg</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Verdant (Pty) Ltd. All rights reserved.</span>
+        <span>Designed with 🌱 in South Africa</span>
+      </div>
+    </div>
+  </footer>
 
-        <p>© 2026 Verdant (Pty) Ltd. All rights reserved.</p>
-
-    </footer>
-
-    <script src="js/main.js"></script>
-
+  <!-- External JS: placed at bottom so HTML loads before script executes -->
+  <script src="js/main.js"></script>
 </body>
 </html>

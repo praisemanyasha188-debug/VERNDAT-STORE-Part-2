@@ -1,1148 +1,464 @@
 /* =============================================
-   Verdant Store - External Stylesheet
-   File: css/style.css
-   Author: [Student Name] | Student No: [Student Number]
-   Part 2 - CSS Styling and Responsive Design
-============================================= */
+   Verdant — Artisan Plant & Home Store
+   Main Stylesheet
+   ============================================= */
 
-/* =============================================
-   SECTION 1: CSS RESET AND BASE STYLES
-   Removes default browser styles to ensure
-   consistent appearance across all browsers.
-============================================= */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* --- CSS Variables --- */
+:root {
+  --clr-bg: #f5f0e8;
+  --clr-dark: #1c1a14;
+  --clr-green: #3a5a3c;
+  --clr-green-light: #6b9e6e;
+  --clr-cream: #faf7f0;
+  --clr-accent: #c4843a;
+  --clr-muted: #8a8070;
+  --clr-border: #d8cfc0;
+
+  --ff-display: 'Playfair Display', Georgia, serif;
+  --ff-body: 'DM Sans', sans-serif;
+
+  --radius: 4px;
+  --transition: 0.3s ease;
+  --shadow: 0 4px 24px rgba(28, 26, 20, 0.10);
+  --shadow-lg: 0 12px 48px rgba(28, 26, 20, 0.18);
 }
 
-/* Base body styles - font, colour, size */
+/* --- Reset & Base --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
 body {
-    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
-    font-size: 1rem;
-    line-height: 1.7;
-    background-color: #2e7b46;
-    color: #067e50;
+  font-family: var(--ff-body);
+  background-color: var(--clr-bg);
+  color: var(--clr-dark);
+  font-size: 16px;
+  line-height: 1.7;
+  font-weight: 300;
 }
 
-/* Remove bullet points from all lists */
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 
-/* Remove underlines from links */
-a { text-decoration: none; color: inherit; }
+/* --- Typography --- */
+h1, h2, h3, h4 {
+  font-family: var(--ff-display);
+  line-height: 1.2;
+  font-weight: 700;
+}
 
-/* Make all images responsive */
-img { max-width: 100%; height: auto; display: block; }
+h1 { font-size: clamp(2.4rem, 6vw, 4.5rem); }
+h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
+h3 { font-size: 1.4rem; }
+h4 { font-size: 1.1rem; }
 
-/* =============================================
-   SECTION 2: CSS VARIABLES (COLOUR SCHEME)
-   Reusable values for consistent styling.
-============================================= */
-:root {
-    --green:       #024a0d;
-    --green-dark:  #3aa95f;
-    --green-light: #65b386;
-    --cream:       #10692e;
-    --background:  #f5f0e8;
-    --dark:        #1c6656;
-    --accent:      #218a57;
-    --muted:       #3d753f;
-    --border:      #d8cfc0;
-    --white:       #ffffff;
-    --shadow:      0 2px 8px rgba(0,0,0,0.10);
-    --shadow-lg:   0 8px 24px rgba(0,0,0,0.16);
-    --radius:      6px;
-    --transition:  0.3s ease;
+p { max-width: 65ch; }
+
+/* --- Layout Utilities --- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section {
+  padding: 5rem 0;
+}
+
+.section-header {
+  margin-bottom: 3rem;
+}
+
+.section-header p {
+  color: var(--clr-muted);
+  margin-top: 0.75rem;
+  font-size: 1.05rem;
+}
+
+.tag {
+  display: inline-block;
+  font-family: var(--ff-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--clr-green);
+  margin-bottom: 0.5rem;
+}
+
+/* --- Buttons --- */
+.btn {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  border-radius: var(--radius);
+  font-family: var(--ff-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all var(--transition);
+  border: 2px solid transparent;
+}
+
+.btn-primary {
+  background: var(--clr-green);
+  color: var(--clr-cream);
+  border-color: var(--clr-green);
+}
+
+.btn-primary:hover {
+  background: var(--clr-dark);
+  border-color: var(--clr-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--clr-green);
+  border-color: var(--clr-green);
+}
+
+.btn-outline:hover {
+  background: var(--clr-green);
+  color: var(--clr-cream);
+  transform: translateY(-2px);
+}
+
+.btn-accent {
+  background: var(--clr-accent);
+  color: #fff;
+  border-color: var(--clr-accent);
+}
+
+.btn-accent:hover {
+  background: #a96d2d;
+  border-color: #a96d2d;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
 }
 
 /* =============================================
-   SECTION 3: TYPOGRAPHY STYLES
-   font-family, font-size, font-weight,
-   line-height and letter-spacing applied
-   to all text elements.
-============================================= */
-h1 {
-    font-size: clamp(1.8rem, 5vw, 3rem);
-    font-weight: 700;
-    line-height: 1.2;
-    color: #1c1a14;
-    margin-bottom: 1rem;
+   HEADER & NAVIGATION
+   ============================================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--clr-cream);
+  border-bottom: 1px solid var(--clr-border);
+  box-shadow: 0 2px 12px rgba(28,26,20,0.06);
 }
 
-h2 {
-    font-size: clamp(1.4rem, 3vw, 2.2rem);
-    font-weight: 700;
-    line-height: 1.3;
-    color: #1c1a14;
-    margin-bottom: 1rem;
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-h3 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    line-height: 1.4;
-    color: #1c1a14;
-    margin-bottom: 0.5rem;
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--ff-display);
+  font-size: 1.6rem;
+  color: var(--clr-dark);
+  font-style: italic;
 }
 
-h4 {
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: #1c1a14;
-    margin-bottom: 0.5rem;
+.logo-icon {
+  width: 34px;
+  height: 34px;
+  background: var(--clr-green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-style: normal;
+  font-size: 1.1rem;
 }
 
-p {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: #3cac7a;
-    margin-bottom: 1rem;
+/* Nav */
+.main-nav ul {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
 }
 
-blockquote {
-    font-style: italic;
-    font-size: 1rem;
-    color: #1c1a14;
-    border-left: 4px solid #205b0b;
-    padding-left: 1rem;
-    margin-bottom: 1.5rem;
+.main-nav a {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--clr-muted);
+  letter-spacing: 0.04em;
+  transition: color var(--transition);
+  position: relative;
 }
 
-cite {
-    display: block;
-    font-size: 0.85rem;
-    font-style: normal;
-    color: #0d4b46;
-    margin-top: 0.5rem;
+.main-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--clr-green);
+  transition: width var(--transition);
 }
 
-address {
-    font-style: normal;
-    line-height: 1.8;
-    color: #8a8070;
-    margin-bottom: 1rem;
+.main-nav a:hover,
+.main-nav a.active {
+  color: var(--clr-green);
 }
 
-/* =============================================
-   SECTION 4: HEADER AND NAVIGATION
-   Sticky header with flexbox layout.
-   Logo on left, nav links on right.
-============================================= */
-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background-color: #faf7f0;
-    border-bottom: 2px solid #d8cfc0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 5%;
-}
-
-/* Logo styling */
-.logo a {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #ec2dbc;
-}
-
-/* Navigation links in a horizontal row using flexbox */
-header nav ul {
-    display: flex;
-    gap: 2rem;
-    align-items: center;
-}
-
-header nav a {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: #8a8070;
-    position: relative;
-    padding-bottom: 4px;
-    transition: color 0.3s ease;
-}
-
-/* Underline effect using ::after pseudo-element */
-header nav a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: #3a5a3c;
-    transition: width 0.3s ease;
-}
-
-/* PSEUDO-CLASS :hover - changes colour and shows underline */
-header nav a:hover {
-    color: #3a5a3c;
-}
-
-header nav a:hover::after {
-    width: 100%;
-}
-
-/* PSEUDO-CLASS :focus - keyboard navigation outline */
-header nav a:focus {
-    outline: 2px solid #3a5a3c;
-    outline-offset: 3px;
-    border-radius: 2px;
+.main-nav a:hover::after,
+.main-nav a.active::after {
+  width: 100%;
 }
 
 /* =============================================
-   SECTION 5: BUTTONS
-   :hover :focus and :active pseudo-classes
-   applied for interactive feedback.
-============================================= */
-a.btn-primary,
-button[type="submit"] {
-    display: inline-block;
-    padding: 0.75rem 1.75rem;
-    background-color: #3a5a3c;
-    color: #ffffff;
-    border: 2px solid #3a5a3c;
-    border-radius: 6px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    text-align: center;
-    font-family: 'Segoe UI', Arial, sans-serif;
+   FOOTER
+   ============================================= */
+.site-footer {
+  background: var(--clr-dark);
+  color: var(--clr-cream);
+  padding: 4rem 0 2rem;
 }
 
-/* PSEUDO-CLASS :hover - lifts button up */
-a.btn-primary:hover,
-button[type="submit"]:hover {
-    background-color: #2d5230;
-    border-color: #2d5230;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-    color: #ffffff;
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
 }
 
-/* PSEUDO-CLASS :focus - visible outline for keyboard users */
-a.btn-primary:focus,
-button[type="submit"]:focus {
-    outline: 3px solid #6b9e6e;
-    outline-offset: 2px;
+.footer-brand .logo { color: var(--clr-cream); margin-bottom: 1rem; }
+
+.footer-brand p {
+  font-size: 0.9rem;
+  color: #a09880;
+  line-height: 1.7;
 }
 
-/* PSEUDO-CLASS :active - pushes button down when clicked */
-a.btn-primary:active,
-button[type="submit"]:active {
-    transform: translateY(0);
-    box-shadow: none;
+.footer-col h4 {
+  font-family: var(--ff-body);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--clr-accent);
+  margin-bottom: 1.2rem;
 }
 
-a.btn-secondary {
-    display: inline-block;
-    padding: 0.75rem 1.75rem;
-    background-color: transparent;
-    color: #3a5a3c;
-    border: 2px solid #3a5a3c;
-    border-radius: 6px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-align: center;
+.footer-col ul li { margin-bottom: 0.6rem; }
+
+.footer-col a {
+  font-size: 0.9rem;
+  color: #a09880;
+  transition: color var(--transition);
 }
 
-/* PSEUDO-CLASS :hover on secondary button */
-a.btn-secondary:hover {
-    background-color: #3a5a3c;
-    color: #ffffff;
-    transform: translateY(-2px);
-}
+.footer-col a:hover { color: var(--clr-cream); }
 
-/* General link hover */
-a:hover { color: #3a5a3c; }
-
-/* =============================================
-   SECTION 6: HERO SECTION
-   Two column CSS Grid layout on desktop.
-============================================= */
-#hero {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
-    min-height: 80vh;
-    padding: 4rem 5%;
-    background-color: #f5f0e8;
-    max-width: 100%;
-}
-
-#hero h1 { color: #1c1a14; font-size: clamp(2rem, 5vw, 3.5rem); }
-#hero p  { font-size: 1.1rem; color: #8a8070; margin-bottom: 1.5rem; }
-
-/* Hero buttons row using flexbox */
-#hero .hero-buttons {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-/* Hero links styled as buttons */
-#hero a {
-    display: inline-block;
-    padding: 0.75rem 1.75rem;
-    border-radius: 6px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: all 0.3s ease;
-}
-
-#hero a:first-of-type {
-    background-color: #3a5a3c;
-    color: #ffffff;
-    border: 2px solid #3a5a3c;
-}
-
-#hero a:first-of-type:hover {
-    background-color: #2d5230;
-    transform: translateY(-2px);
-    color: #ffffff;
-}
-
-#hero a:last-of-type {
-    background-color: transparent;
-    color: #3a5a3c;
-    border: 2px solid #3a5a3c;
-}
-
-#hero a:last-of-type:hover {
-    background-color: #3a5a3c;
-    color: #ffffff;
-    transform: translateY(-2px);
+.footer-bottom {
+  border-top: 1px solid #2e2c24;
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.82rem;
+  color: #6e6850;
 }
 
 /* =============================================
-   SECTION 7: STATS SECTION
-   Dark background with 4 column grid.
-============================================= */
-#stats {
-    background-color: #1c1a14;
-    color: #faf7f0;
-    padding: 3rem 5%;
-    max-width: 100%;
+   PAGE HERO (used on inner pages)
+   ============================================= */
+.page-hero {
+  background: var(--clr-green);
+  color: var(--clr-cream);
+  padding: 5rem 0 4rem;
+  position: relative;
+  overflow: hidden;
 }
 
-#stats h2 {
-    color: #faf7f0;
-    text-align: center;
-    margin-bottom: 2rem;
+.page-hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.04);
 }
 
-/* 4 column grid for stats */
-#stats .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    text-align: center;
-}
+.page-hero .tag { color: rgba(250,247,240,0.6); }
+.page-hero h1 { color: var(--clr-cream); }
 
-/* If no .stats-grid wrapper just style stat-items directly */
-#stats .stat-item,
-#stats > div {
-    text-align: center;
-}
-
-.stat-item h3 {
-    font-size: 2.5rem;
-    color: #c4843a;
-    margin-bottom: 0.5rem;
-}
-
-.stat-item p {
-    color: #a09880;
-    font-size: 0.9rem;
-    margin: 0;
+.page-hero p {
+  color: rgba(250,247,240,0.8);
+  font-size: 1.1rem;
+  margin-top: 1rem;
 }
 
 /* =============================================
-   SECTION 8: FEATURED PRODUCTS
-   CSS Grid auto-fill for product cards.
-============================================= */
-#featured-products {
-    padding: 4rem 5%;
-    background-color: #faf7f0;
-    max-width: 100%;
+   PRODUCT CARD
+   ============================================= */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2rem;
 }
 
-#featured-products h2 { margin-bottom: 0.5rem; }
-#featured-products > p { margin-bottom: 2rem; }
-
-/* Product cards grid */
-#featured-products,
-#foliage-plants,
-#succulents-cacti,
-#pots-planters,
-#home-accessories {
-    padding: 3rem 5%;
-    max-width: 100%;
-}
-
-/* Alternating backgrounds for product sections */
-#succulents-cacti,
-#home-accessories {
-    background-color: #faf7f0;
-}
-
-/* Product card grid layout */
-.product-card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1.5rem;
-}
-
-/* Individual product card */
 .product-card {
-    background-color: #faf7f0;
-    border: 1px solid #d8cfc0;
-    border-radius: 6px;
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: var(--clr-cream);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform var(--transition), box-shadow var(--transition);
 }
 
-/* PSEUDO-CLASS :hover - lifts card on hover */
 .product-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.14);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
 }
 
-.product-card h3 { color: #1c1a14; font-size: 1.1rem; }
-.product-card p  { color: #8a8070; font-size: 0.9rem; margin: 0; }
-
-/* Price styling */
-.product-card p:last-of-type {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #3a5a3c;
-    margin-top: 0.5rem;
+.product-img {
+  height: 220px;
+  background: var(--clr-border);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
 }
 
-/* Link inside product card */
-.product-card a {
-    display: inline-block;
-    margin-top: 1rem;
-    padding: 0.6rem 1.2rem;
-    background-color: #3a5a3c;
-    color: #ffffff;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-align: center;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+.product-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: var(--clr-accent);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.6rem;
+  border-radius: 2px;
 }
 
-/* PSEUDO-CLASS :hover on product link */
-.product-card a:hover {
-    background-color: #2d5230;
-    transform: translateY(-2px);
-    color: #ffffff;
+.product-body {
+  padding: 1.2rem 1.4rem 1.6rem;
 }
 
-/* Section headings above product grids */
-#foliage-plants h2,
-#succulents-cacti h2,
-#pots-planters h2,
-#home-accessories h2 {
-    border-bottom: 2px solid #d8cfc0;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1.5rem;
+.product-body .tag { margin-bottom: 0.3rem; }
+
+.product-body h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
 }
 
-/* =============================================
-   SECTION 9: ABOUT TEASER
-   Two column grid with image and text.
-============================================= */
-#about-teaser {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
-    padding: 4rem 5%;
-    background-color: #faf7f0;
-    max-width: 100%;
+.product-body p {
+  font-size: 0.88rem;
+  color: var(--clr-muted);
+  margin-bottom: 1rem;
 }
 
-#about-teaser h2 { color: #1c1a14; }
-#about-teaser p  { color: #8a8070; }
-
-#about-teaser a {
-    display: inline-block;
-    padding: 0.75rem 1.75rem;
-    background-color: #3a5a3c;
-    color: #ffffff;
-    border-radius: 6px;
-    font-weight: 600;
-    transition: all 0.3s ease;
+.product-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-#about-teaser a:hover {
-    background-color: #2d5230;
-    transform: translateY(-2px);
-    color: #ffffff;
+.price {
+  font-family: var(--ff-display);
+  font-size: 1.3rem;
+  color: var(--clr-green);
+  font-weight: 700;
 }
 
 /* =============================================
-   SECTION 10: TESTIMONIALS
-   Green background with 3 column grid.
-============================================= */
-#testimonials {
-    background-color: #3a5a3c;
-    color: #faf7f0;
-    padding: 4rem 5%;
-    max-width: 100%;
+   FORMS
+   ============================================= */
+.form-group {
+  margin-bottom: 1.4rem;
 }
-
-#testimonials h2 {
-    color: #faf7f0;
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-/* 3 column grid for testimonial cards */
-#testimonials .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* Style blockquotes directly inside testimonials */
-#testimonials blockquote {
-    background-color: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-left: 4px solid #c4843a;
-    border-radius: 6px;
-    padding: 1.5rem;
-    color: rgba(250,247,240,0.9);
-    margin-bottom: 0;
-}
-
-#testimonials cite { color: rgba(250,247,240,0.6); }
-
-/* =============================================
-   SECTION 11: CTA SECTION
-   Accent coloured banner.
-============================================= */
-#cta,
-#product-cta {
-    background-color: #c4843a;
-    color: #ffffff;
-    text-align: center;
-    padding: 4rem 5%;
-    max-width: 100%;
-}
-
-#cta h2,
-#product-cta h2 { color: #ffffff; margin-bottom: 1rem; }
-
-#cta p,
-#product-cta p {
-    color: rgba(255,255,255,0.9);
-    max-width: 600px;
-    margin: 0 auto 1.5rem;
-}
-
-#cta a,
-#product-cta a {
-    display: inline-block;
-    padding: 0.75rem 2rem;
-    background-color: #ffffff;
-    color: #c4843a;
-    border-radius: 6px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-/* PSEUDO-CLASS :hover on CTA button */
-#cta a:hover,
-#product-cta a:hover {
-    background-color: #faf7f0;
-    transform: translateY(-2px);
-}
-
-/* =============================================
-   SECTION 12: PAGE HEADING (inner pages)
-   Green banner at top of each inner page.
-============================================= */
-#page-heading {
-    background-color: #3a5a3c;
-    color: #faf7f0;
-    padding: 4rem 5%;
-    max-width: 100%;
-}
-
-#page-heading h1 {
-    color: #faf7f0;
-    margin-bottom: 1rem;
-}
-
-#page-heading p {
-    color: rgba(250,247,240,0.85);
-    font-size: 1.05rem;
-    max-width: 600px;
-    margin: 0;
-}
-
-/* =============================================
-   SECTION 13: ABOUT PAGE
-============================================= */
-#our-story {
-    padding: 3rem 5%;
-    background-color: #f5f0e8;
-    max-width: 100%;
-}
-
-/* Mission and Vision - two columns */
-#mission-vision {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    padding: 3rem 5%;
-    max-width: 100%;
-    background-color: #faf7f0;
-}
-
-.mission {
-    background-color: #3a5a3c;
-    color: #faf7f0;
-    padding: 2rem;
-    border-radius: 6px;
-}
-
-.mission h3 { color: #faf7f0; }
-.mission p  { color: rgba(250,247,240,0.9); margin: 0; }
-
-.vision {
-    background-color: #1c1a14;
-    color: #faf7f0;
-    padding: 2rem;
-    border-radius: 6px;
-}
-
-.vision h3 { color: #faf7f0; }
-.vision p  { color: rgba(250,247,240,0.9); margin: 0; }
-
-/* Values - 3 column grid */
-#values {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    padding: 3rem 5%;
-    background-color: #faf7f0;
-    max-width: 100%;
-}
-
-#values h2 { grid-column: 1 / -1; }
-
-.value-item {
-    background-color: #f5f0e8;
-    border: 1px solid #d8cfc0;
-    border-radius: 6px;
-    padding: 1.5rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* PSEUDO-CLASS :hover on value cards */
-.value-item:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-}
-
-.value-item h3 { color: #3a5a3c; }
-
-/* Team - 3 column grid */
-#team {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    padding: 3rem 5%;
-    background-color: #f5f0e8;
-    max-width: 100%;
-}
-
-#team h2,
-#team > p { grid-column: 1 / -1; }
-
-.team-member {
-    background-color: #faf7f0;
-    border: 1px solid #d8cfc0;
-    border-radius: 6px;
-    padding: 1.5rem;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease;
-}
-
-/* PSEUDO-CLASS :hover on team cards */
-.team-member:hover { transform: translateY(-4px); }
-.team-member h3 { font-size: 1rem; color: #1c1a14; }
-
-/* Timeline - dark background */
-#timeline {
-    background-color: #1c1a14;
-    color: #faf7f0;
-    padding: 3rem 5%;
-    max-width: 100%;
-}
-
-#timeline h2 { color: #faf7f0; margin-bottom: 2rem; }
-
-.timeline-item {
-    border-left: 3px solid #c4843a;
-    padding-left: 1.5rem;
-    margin-bottom: 1.5rem;
-    position: relative;
-}
-
-/* Dot on timeline */
-.timeline-item::before {
-    content: '';
-    position: absolute;
-    left: -8px;
-    top: 6px;
-    width: 13px;
-    height: 13px;
-    border-radius: 50%;
-    background-color: #c4843a;
-}
-
-.timeline-item h3 { color: #faf7f0; font-size: 1rem; }
-.timeline-item p  { color: #a09880; font-size: 0.9rem; margin: 0; }
-
-/* =============================================
-   SECTION 14: ENQUIRY PAGE
-============================================= */
-#enquiry-types {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    padding: 3rem 5%;
-    background-color: #faf7f0;
-    max-width: 100%;
-}
-
-#enquiry-types h2 { grid-column: 1 / -1; }
-
-.enquiry-type {
-    background-color: #f5f0e8;
-    border: 1px solid #d8cfc0;
-    border-left: 4px solid #3a5a3c;
-    border-radius: 6px;
-    padding: 1.5rem;
-    transition: transform 0.3s ease;
-}
-
-/* PSEUDO-CLASS :hover on enquiry type cards */
-.enquiry-type:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.enquiry-type h3 { color: #3a5a3c; font-size: 1rem; }
-
-/* FAQ section */
-#faq {
-    padding: 3rem 5%;
-    background-color: #faf7f0;
-    max-width: 100%;
-}
-
-.faq-item {
-    border: 1px solid #d8cfc0;
-    border-radius: 6px;
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-    transition: box-shadow 0.3s ease;
-}
-
-/* PSEUDO-CLASS :hover on FAQ items */
-.faq-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-.faq-item h3 { color: #3a5a3c; font-size: 1rem; margin-bottom: 0.4rem; }
-.faq-item p  { margin: 0; }
-
-/* =============================================
-   SECTION 15: FORM STYLES
-   :focus and :hover pseudo-classes used
-   on all form inputs.
-============================================= */
-#enquiry-form-section,
-#contact-form-section {
-    padding: 3rem 5%;
-    background-color: #f5f0e8;
-    max-width: 100%;
-}
-
-form {
-    max-width: 680px;
-    background-color: #faf7f0;
-    border: 1px solid #d8cfc0;
-    border-radius: 6px;
-    padding: 2rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-.form-group { margin-bottom: 1.2rem; }
 
 .form-group label {
-    display: block;
-    font-size: 0.88rem;
-    font-weight: 600;
-    color: #1c1a14;
-    margin-bottom: 0.4rem;
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.4rem;
+  color: var(--clr-dark);
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: 1px solid #d8cfc0;
-    border-radius: 6px;
-    background-color: #f5f0e8;
-    font-family: 'Segoe UI', Arial, sans-serif;
-    font-size: 1rem;
-    color: #1c1a14;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+  background: var(--clr-cream);
+  font-family: var(--ff-body);
+  font-size: 0.95rem;
+  color: var(--clr-dark);
+  transition: border-color var(--transition), box-shadow var(--transition);
 }
 
-/* PSEUDO-CLASS :focus - green border glow when clicked */
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-    outline: none;
-    border-color: #3a5a3c;
-    box-shadow: 0 0 0 3px rgba(58,90,60,0.15);
-}
-
-/* PSEUDO-CLASS :hover - subtle border change on mouse over */
-.form-group input:hover,
-.form-group select:hover,
-.form-group textarea:hover {
-    border-color: #6b9e6e;
+  outline: none;
+  border-color: var(--clr-green);
+  box-shadow: 0 0 0 3px rgba(58, 90, 60, 0.1);
 }
 
 .form-group textarea { resize: vertical; min-height: 120px; }
 
-.form-group button[type="submit"] {
-    width: 100%;
-    padding: 0.85rem;
-    background-color: #3a5a3c;
-    color: #ffffff;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    font-family: 'Segoe UI', Arial, sans-serif;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.form-group button[type="submit"]:hover  { background-color: #2d5230; transform: translateY(-2px); }
-.form-group button[type="submit"]:focus  { outline: 3px solid #6b9e6e; outline-offset: 2px; }
-.form-group button[type="submit"]:active { transform: translateY(0); }
-
-/* =============================================
-   SECTION 16: CONTACT PAGE
-============================================= */
-#store-locations {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    padding: 3rem 5%;
-    background-color: #f5f0e8;
-    max-width: 100%;
-}
-
-#store-locations h2 { grid-column: 1 / -1; }
-
-.store-location {
-    background-color: #faf7f0;
-    border: 1px solid #d8cfc0;
-    border-radius: 6px;
-    padding: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-.store-location h3 {
-    color: #3a5a3c;
-    border-bottom: 2px solid #d8cfc0;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
-}
-
-/* Trading hours table */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-    font-size: 0.9rem;
-}
-
-thead th {
-    background-color: #3a5a3c;
-    color: #ffffff;
-    padding: 0.6rem 1rem;
-    text-align: left;
-    font-weight: 600;
-}
-
-tbody td {
-    padding: 0.6rem 1rem;
-    border-bottom: 1px solid #d8cfc0;
-    color: #8a8070;
-}
-
-/* PSEUDO-CLASS :hover on table rows */
-tbody tr:hover { background-color: #f5f0e8; }
-tbody tr:nth-child(even) { background-color: rgba(245,240,232,0.5); }
-
-/* Direct contact section */
-#direct-contact {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    padding: 3rem 5%;
-    background-color: #faf7f0;
-    max-width: 100%;
-}
-
-#direct-contact h2 { grid-column: 1 / -1; }
-
-.contact-method {
-    background-color: #f5f0e8;
-    border: 1px solid #d8cfc0;
-    border-radius: 6px;
-    padding: 1.5rem;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* PSEUDO-CLASS :hover on contact cards */
-.contact-method:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-}
-
-.contact-method h3 { color: #3a5a3c; }
-.contact-method a  { color: #3a5a3c; font-weight: 600; }
-.contact-method a:hover { text-decoration: underline; }
-
-/* =============================================
-   SECTION 17: FOOTER
-   Dark background 4 column grid layout.
-============================================= */
-footer {
-    background-color: #1c1a14;
-    color: #faf7f0;
-    padding: 3rem 5% 1.5rem;
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 2rem;
-    align-items: start;
-    max-width: 100%;
-}
-
-.footer-brand p:first-child {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #6b9e6e;
-    margin-bottom: 0.5rem;
-}
-
-.footer-brand p { color: #a09880; font-size: 0.9rem; }
-
-footer nav h4,
-.footer-contact h4 {
-    color: #c4843a;
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
-    margin-bottom: 1rem;
-}
-
-footer nav ul li { margin-bottom: 0.5rem; }
-
-footer nav a {
-    color: #a09880;
-    font-size: 0.9rem;
-    transition: color 0.3s ease;
-}
-
-/* PSEUDO-CLASS :hover on footer links */
-footer nav a:hover { color: #faf7f0; }
-
-.footer-contact p { color: #a09880; font-size: 0.9rem; margin-bottom: 0.4rem; }
-.footer-contact a { color: #a09880; transition: color 0.3s ease; }
-.footer-contact a:hover { color: #faf7f0; }
-
-/* Copyright bar */
-footer > p:last-child {
-    grid-column: 1 / -1;
-    border-top: 1px solid #2e2c24;
-    padding-top: 1rem;
-    color: #6e6850;
-    font-size: 0.85rem;
-    text-align: center;
-    margin: 0;
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 }
 
 /* =============================================
-   SECTION 18: RESPONSIVE DESIGN
-   Breakpoints:
-   Tablet  - max-width: 1024px
-   Mobile  - max-width: 768px
-============================================= */
-
-/* TABLET BREAKPOINT */
-@media (max-width: 1024px) {
-
-    /* Reduce heading sizes */
-    h1 { font-size: 1.8rem; }
-    h2 { font-size: 1.4rem; }
-
-    /* Hero: single column on tablet */
-    #hero {
-        grid-template-columns: 1fr;
-        min-height: auto;
-        text-align: center;
-    }
-
-    #hero .hero-buttons { justify-content: center; }
-
-    /* Stats: 2 columns */
-    #stats .stats-grid { grid-template-columns: repeat(2, 1fr); }
-
-    /* About teaser: single column */
-    #about-teaser { grid-template-columns: 1fr; }
-
-    /* Testimonials: 2 columns */
-    #testimonials .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
-
-    /* Values: 2 columns */
-    #values { grid-template-columns: repeat(2, 1fr); }
-
-    /* Team: 2 columns */
-    #team { grid-template-columns: repeat(2, 1fr); }
-
-    /* Mission vision: single column */
-    #mission-vision { grid-template-columns: 1fr; }
-
-    /* Footer: 2 columns */
-    footer { grid-template-columns: 1fr 1fr; }
-
-    /* Contact methods: 2 columns */
-    #direct-contact { grid-template-columns: repeat(2, 1fr); }
-
-    /* Store locations: single column */
-    #store-locations { grid-template-columns: 1fr; }
-}
-
-/* MOBILE BREAKPOINT */
+   RESPONSIVE
+   ============================================= */
 @media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 
-    /* Reduce font sizes on mobile */
-    h1 { font-size: 1.5rem; }
-    h2 { font-size: 1.2rem; }
-    h3 { font-size: 1rem; }
-    p  { font-size: 0.9rem; }
+  .form-row {
+    grid-template-columns: 1fr;
+  }
 
-    /* NAVIGATION: stack vertically on mobile */
-    header {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1rem 4%;
-    }
+  .main-nav ul {
+    gap: 1.2rem;
+  }
+}
 
-    /* Nav links wrap to multiple lines */
-    header nav ul {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1rem;
-    }
+@media (max-width: 580px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
 
-    header nav a { font-size: 0.85rem; }
+  .header-inner {
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
 
-    /* Reduce section padding on mobile */
-    #hero,
-    #stats,
-    #about-teaser,
-    #testimonials,
-    #cta,
-    #product-cta,
-    #page-heading,
-    #our-story,
-    #mission-vision,
-    #values,
-    #team,
-    #timeline,
-    #enquiry-types,
-    #enquiry-form-section,
-    #faq,
-    #store-locations,
-    #contact-form-section,
-    #direct-contact,
-    #featured-products,
-    #foliage-plants,
-    #succulents-cacti,
-    #pots-planters,
-    #home-accessories,
-    footer {
-        padding: 2rem 4%;
-    }
-
-    /* Stats: single column */
-    #stats .stats-grid { grid-template-columns: 1fr; }
-
-    /* Testimonials: single column */
-    #testimonials .testimonials-grid { grid-template-columns: 1fr; }
-
-    /* Values: single column */
-    #values { grid-template-columns: 1fr; }
-
-    /* Team: single column */
-    #team { grid-template-columns: 1fr; }
-
-    /* Mission vision: single column */
-    #mission-vision { grid-template-columns: 1fr; }
-
-    /* Enquiry types: single column */
-    #enquiry-types { grid-template-columns: 1fr; }
-
-    /* Contact: single column */
-    #direct-contact { grid-template-columns: 1fr; }
-    #store-locations { grid-template-columns: 1fr; }
-
-    /* Footer: single column */
-    footer { grid-template-columns: 1fr; }
-
-    /* Buttons: full width on mobile */
-    #hero a,
-    a.btn-primary,
-    a.btn-secondary { width: 100%; text-align: center; }
-
-    /* Hero buttons stack vertically */
-    #hero .hero-buttons { flex-direction: column; align-items: center; }
-
-    /* Images: full width on mobile */
-    img { width: 100%; height: auto; }
-
-    /* Form: reduce padding */
-    form { padding: 1.2rem; }
+  .main-nav ul {
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
 }

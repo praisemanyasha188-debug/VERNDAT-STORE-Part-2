@@ -99,5 +99,4 @@ function showError(fieldId, message) {
   error.textContent = message;
   error.style.cssText = 'color:#c0392b; font-size:0.82rem; display:block; margin-top:0.3rem;';
   field.parentNode.appendChild(error);
-  field.style.borderColor = '#c0392b';
-}
+  field.style.borderColor = '#c0392b';s
